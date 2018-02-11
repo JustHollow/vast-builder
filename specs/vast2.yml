@@ -1,0 +1,237 @@
+## VAST v2 builder API
+
+# Based on iab spec : https://www.iab.com/wp-content/uploads/2015/11/VAST-2_0-FINAL.pdf
+# pages 10, 11, 12, 13, 14
+
+## infos :
+# attrs: represents an array of allowed attributes for a Tag
+#   - optionnal attr are noted as string
+#   - needed attr are noted as object and you can optionnaly list its values
+#  = search "Pricing" for an example
+# required: this Tag is required in a valid vast (can depend on fathers)
+# uniq: at this level, only one element can exists
+#   - uniq is shared by all the concerned childs of a tag
+# only: both required and uniq
+# alo: "At Least One": one or more are allowed
+#   - alo is shared by all the concerned childs of a tag
+
+config:
+  # use "+attrs:" on an items which use references to add more attrs
+  Tracking_events: &Tracking_events
+    attrs:
+      - event:
+        - creativeView
+        - start
+        - midpoint
+        - firstQuartile
+        - thirdQuartile
+        - complete
+        - mute
+        - unmute
+        - pause
+        - rewind
+        - resume
+        - fullscreen
+        - expand
+        - collapse
+        - acceptInvitation
+        - close
+  StaticResource_types: &StaticResource_types
+    attrs:
+      - creativeType:  # spec ambigous, say creativeType and use type in examples
+        - image/gif
+        - image/jpeg
+        - image/jpg  # not in spec but used in specs examples
+        - image/png
+        - application/x-javascript
+        - application/x-shockwave-flash
+VAST:
+  only: true
+  attrs:
+    - version: ['2.0']
+  Ad:
+    alo: true
+    attrs:
+      - id:
+    InLine:
+      uniq: true # only one elem of this level
+      AdSystem:
+        required: true
+        attrs: [version]
+      AdTitle:
+        required: true
+      Description:
+      Survey:
+      Error:
+      Impression:
+        alo: true
+        attrs: [id]
+      Creatives:
+        required: true
+        Creative:
+          alo: true
+          attrs: [id, sequence, adID] # warning adId in v4
+          Linear:
+            uniq: true # at least one of this subitems
+            Duration:
+              required: true
+            TrackingEvents:
+              Tracking:
+                <<: *Tracking_events
+            AdParameters:
+            VideoClicks:
+              ClickThrough:
+              ClickTracking:
+              CustomClick:
+                attrs: [id]
+            MediaFiles:
+              required: true
+              MediaFile:
+                alo: true
+                attrs:
+                  - id
+                  - delivery:
+                    - progressive
+                    - streaming
+                  - type:
+                  - bitrate
+                  - width:
+                  - height:
+                  - scalable
+                  - mantainAspectRatio
+                  - apiFramework
+          CompanionAds:
+            uniq: true # at least one of this subitems
+            Companion:
+              attrs:
+                - id
+                - width:
+                - height:
+                - expandedWidth
+                - expandedHeight
+                - apiFramework
+              StaticResource: # position not clean in specs, it tell one level upper but it's a non sense
+                # not sure, check in specs
+                alo: true # at least one of this subitems
+                <<: *StaticResource_types
+              IFrameResource:
+                alo: true # at least one of this subitems
+              HTMLResource:
+                alo: true # at least one of this subitems
+              TrackingEvents:
+                Tracking:
+                  attrs:
+                    - event: [creativeView]
+              CompanionClickThrough:
+              AltText:
+              AdParameters:
+          NonLinearAds:
+            uniq: true # at least one of this subitems
+            NonLinear:
+              attrs:
+                - id
+                - width:
+                - height:
+                - expandedWidth
+                - expandedHeight
+                - scalable
+                - maintainAspectRatio
+                - minSuggestedDuration
+                - apiFramework
+              StaticResource:
+                # check if one is needed
+                alo: true # at least one of this subitems
+                <<: *StaticResource_types
+              IFrameResource:
+                alo: true # at least one of this subitems
+              HTMLResource:
+                alo: true # at least one of this subitems
+            TrackingEvents:  # this level is stranges
+              Tracking:
+                <<: *Tracking_events
+            # not sure about indentation for nexts
+            NonLinearClickThrough:
+            AdParameters:
+      Extensions:
+        Extension:
+          required: true
+          attrs: [type]
+    Wrapper:
+      uniq: true # only one elem of this level
+      AdSystem:
+        required: true
+        attrs: [version]
+      VASTAdTagURI:
+        required: true
+      Error:
+      Impression:
+        alo: true
+        attrs: [id]
+      Creatives:
+        required: true
+        Creative:
+          attrs: [id, sequence, adID] # warning adId in v4
+          Linear:
+            uniq: true   # not required in spec, but nonsense to put a Creative without one
+            TrackingEvents:
+              Tracking:
+                <<: *Tracking_events
+            VideoClicks:
+              ClickThrough:
+              ClickTracking:
+              CustomClick:
+                attrs: [id]
+          CompanionAds:
+            uniq: true # at least one of this subitems
+            Companion:
+              attrs:
+                - id
+                - width:
+                - height:
+                - expandedWidth
+                - expandedHeight
+                - apiFramework
+              StaticResource: # position not clean in specs, it tell one level upper but it's a non sense
+                # not sure, check in specs
+                alo: true # at least one of this subitems
+                <<: *StaticResource_types
+              IFrameResource:
+                alo: true # at least one of this subitems
+              HTMLResource:
+                alo: true # at least one of this subitems
+              TrackingEvents:
+                Tracking:
+                  attrs:
+                    - event: [creativeView]
+              CompanionClickThrough:
+              AltText:
+              AdParameters:
+          NonLinearAds:
+            uniq: true # at least one of this subitems
+            NonLinear:
+              attrs:
+                - id
+                - width:
+                - height:
+                - expandedWidth
+                - expandedHeight
+                - scalable
+                - maintainAspectRatio
+                - minSuggestedDuration
+                - apiFramework
+              StaticResource:
+                # check if one is needed
+                alo: true # at least one of this subitems
+                <<: *StaticResource_types
+              IFrameResource:
+                alo: true # at least one of this subitems
+              HTMLResource:
+                alo: true # at least one of this subitems
+            TrackingEvents:  # this level is stranges
+              Tracking:
+                <<: *Tracking_events
+      Extensions:
+        Extension:
+          required: true
+          attrs: [type]
+

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VAST version="3.0">
+  <Ad id="caecc60e918f5fa7cecfa68d907185429b5f71f2">
+    <InLine>
+      <AdSystem version="1.0">Ogury ad external server</AdSystem>
+      <AdTitle>
+        <![CDATA[[EXTERNAL] Test VAST Beeswax / MOAT]]>
+      </AdTitle>
+      <Description />
+      <Impression id="22142b5f56c31324eedc2948c21e5fb3ba930f42">
+        <![CDATA[https://ms-ads-events.presage.io/imp?t={{CACHEBUSTER}}&imp={{AUCTION_ID}}&oc_id=31706&ak=270028&u_id={{USER_ID}}&u_os={{PLATFORM_OS}}&u_a={{USER_AGENT}}&u_gd={{GENDER}}&u_ag={{AGE}}&a_b={{APP_BUNDLE}}&a_n={{APP_NAME}}&a_ex={{INVENTORY_SOURCE}}]]>
+      </Impression>
+      <Creatives>
+        <Creative>
+          <Linear>
+            <Duration>
+              <![CDATA[00:00:30]]>
+            </Duration>
+            <TrackingEvents>
+              <Tracking event="start">
+                <![CDATA[https://ms-ads-events.presage.io/vid?t={{CACHEBUSTER}}&imp={{AUCTION_ID}}&oc_id=31706&ak=270028&u_id={{USER_ID}}&u_os={{PLATFORM_OS}}&u_a={{USER_AGENT}}&u_gd={{GENDER}}&u_ag={{AGE}}&a_b={{APP_BUNDLE}}&a_n={{APP_NAME}}&a_ex={{INVENTORY_SOURCE}}&e=start]]>
+              </Tracking>
+              <Tracking event="firstQuartile">
+                <![CDATA[https://ms-ads-events.presage.io/vid?t={{CACHEBUSTER}}&imp={{AUCTION_ID}}&oc_id=31706&ak=270028&u_id={{USER_ID}}&u_os={{PLATFORM_OS}}&u_a={{USER_AGENT}}&u_gd={{GENDER}}&u_ag={{AGE}}&a_b={{APP_BUNDLE}}&a_n={{APP_NAME}}&a_ex={{INVENTORY_SOURCE}}&e=firstquartile]]>
+              </Tracking>
+              <Tracking event="midpoint">
+                <![CDATA[https://ms-ads-events.presage.io/vid?t={{CACHEBUSTER}}&imp={{AUCTION_ID}}&oc_id=31706&ak=270028&u_id={{USER_ID}}&u_os={{PLATFORM_OS}}&u_a={{USER_AGENT}}&u_gd={{GENDER}}&u_ag={{AGE}}&a_b={{APP_BUNDLE}}&a_n={{APP_NAME}}&a_ex={{INVENTORY_SOURCE}}&e=midpoint]]>
+              </Tracking>
+              <Tracking event="thirdQuartile">
+                <![CDATA[https://ms-ads-events.presage.io/vid?t={{CACHEBUSTER}}&imp={{AUCTION_ID}}&oc_id=31706&ak=270028&u_id={{USER_ID}}&u_os={{PLATFORM_OS}}&u_a={{USER_AGENT}}&u_gd={{GENDER}}&u_ag={{AGE}}&a_b={{APP_BUNDLE}}&a_n={{APP_NAME}}&a_ex={{INVENTORY_SOURCE}}&e=thirdquartile]]>
+              </Tracking>
+              <Tracking event="complete">
+                <![CDATA[https://ms-ads-events.presage.io/vid?t={{CACHEBUSTER}}&imp={{AUCTION_ID}}&oc_id=31706&ak=270028&u_id={{USER_ID}}&u_os={{PLATFORM_OS}}&u_a={{USER_AGENT}}&u_gd={{GENDER}}&u_ag={{AGE}}&a_b={{APP_BUNDLE}}&a_n={{APP_NAME}}&a_ex={{INVENTORY_SOURCE}}&e=complete]]>
+              </Tracking>
+              <Tracking event="closeLinear">
+                <![CDATA[https://ms-ads-events.presage.io/vid?t={{CACHEBUSTER}}&imp={{AUCTION_ID}}&oc_id=31706&ak=270028&u_id={{USER_ID}}&u_os={{PLATFORM_OS}}&u_a={{USER_AGENT}}&u_gd={{GENDER}}&u_ag={{AGE}}&a_b={{APP_BUNDLE}}&a_n={{APP_NAME}}&a_ex={{INVENTORY_SOURCE}}&e=closelinear]]>
+              </Tracking>
+              <Tracking event="close">
+                <![CDATA[https://ms-ads-events.presage.io/vid?t={{CACHEBUSTER}}&imp={{AUCTION_ID}}&oc_id=31706&ak=270028&u_id={{USER_ID}}&u_os={{PLATFORM_OS}}&u_a={{USER_AGENT}}&u_gd={{GENDER}}&u_ag={{AGE}}&a_b={{APP_BUNDLE}}&a_n={{APP_NAME}}&a_ex={{INVENTORY_SOURCE}}&e=closelinear]]>
+              </Tracking>
+              <Tracking event="skip">
+                <![CDATA[https://ms-ads-events.presage.io/vid?t={{CACHEBUSTER}}&imp={{AUCTION_ID}}&oc_id=31706&ak=270028&u_id={{USER_ID}}&u_os={{PLATFORM_OS}}&u_a={{USER_AGENT}}&u_gd={{GENDER}}&u_ag={{AGE}}&a_b={{APP_BUNDLE}}&a_n={{APP_NAME}}&a_ex={{INVENTORY_SOURCE}}&e=skip]]>
+              </Tracking>
+            </TrackingEvents>
+            <VideoClicks>
+              <ClickThrough id="7ef628f91cc80d90018139b0606206798446f7e0">
+                <![CDATA[https://ms-ads-events.presage.io/clk?t={{CACHEBUSTER}}&imp={{AUCTION_ID}}&oc_id=31706&ak=270028&u_id={{USER_ID}}&u_os={{PLATFORM_OS}}&u_a={{USER_AGENT}}&u_gd={{GENDER}}&u_ag={{AGE}}&a_b={{APP_BUNDLE}}&a_n={{APP_NAME}}&a_ex={{INVENTORY_SOURCE}}]]>
+              </ClickThrough>
+            </VideoClicks>
+            <MediaFiles>
+              <MediaFile type="video/mp4" width="640" height="360" delivery="progressive" id="51336ade7e7d54dbac9ca5222fbc9b34ae1c762e" scalable="true" maintainAspectRatio="true">
+                <![CDATA[http://medias.cloud.ogury.io/Versace/MaggioCPV17/Versace/offline.mp4]]>
+              </MediaFile>
+            </MediaFiles>
+            <Icons>
+              <Icon program="ogury" width="58" height="52" xPosition="left" yPosition="bottom">
+                <StaticResource creativeType="image/png">
+                  <![CDATA[https://medias.deva.cloud.ogury.io/sxb/vast-icon/test1/optout.png]]>
+                </StaticResource>
+                <IconClicks>
+                  <IconClickThrough>
+                    <![CDATA[https://www.ogury.com/privacy/]]>
+                  </IconClickThrough>
+                </IconClicks>
+              </Icon>
+            </Icons>
+          </Linear>
+        </Creative>
+      </Creatives>
+      <Extensions>
+        <Extension>
+          <AdVerifications>
+            <Verification vendor="Moat">
+              <ViewableImpression id="zMoatOGURYCampaign=31706[MOAT]zMoatOGURYApp={{APP_BUNDLE}}">
+                <![CDATA[https://px.moatads.com/pixel.gif?moatPartnerId=oguryvastvideo752121773256&moatPartnerKey=zMoatOGURYPc&moatNode=true]]>
+              </ViewableImpression>
+            </Verification>
+          </AdVerifications>
+        </Extension>
+      </Extensions>
+    </InLine>
+  </Ad>
+</VAST>

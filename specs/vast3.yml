@@ -1,0 +1,383 @@
+## VAST v3 builder API
+
+# Based on iab spec : https://www.iab.com/wp-content/uploads/2015/06/VASTv3_0.pdf
+# pages 67, 68, 69
+
+## infos :
+# attrs: represents an array of allowed attributes for a Tag
+#   - optionnal attr are noted as string
+#   - needed attr are noted as object and you can optionnaly list its values
+#  = search "Pricing" for an example
+# required: this Tag is required in a valid vast (can depend on fathers)
+# uniq: at this level, only one element can exists
+#   - uniq is shared by all the concerned childs of a tag
+# only: both required and uniq
+# alo: "At Least One": one or more are allowed
+#   - alo is shared by all the concerned childs of a tag
+
+config:
+  # use "+attrs:" on an items which use references to add more attrs
+  StaticResource_types: &StaticResource_types
+    attrs:
+      - creativeType:  # spec ambigous, say creativeType and use type in examples
+        - image/gif
+        - image/jpeg
+        - image/jpg  # not in spec but used in specs examples
+        - image/png
+        - application/x-javascript
+        - application/x-shockwave-flash
+      # - type:  # spec ambigous, say creativeType and use type in examples
+      #   - image/gif
+      #   - image/jpeg
+      #   - image/jpg  # not in spec but used in specs examples
+      #   - image/png
+      #   - application/x-javascript
+      #   - application/x-shockwave-flash
+VAST:
+  only: true
+  attrs:
+    - version: ['3.0']
+  Error:
+  Ad:
+    alo: true
+    attrs: [id, sequence]
+    InLine:
+      uniq: true # only one elem of this level
+      AdSystem:
+        required: true
+        attrs: [version]
+      AdTitle:
+        required: true
+      Description:
+      Advertiser:
+      Pricing:
+        attrs:
+          - currency:       # object = needed
+          - model: [CPM, CPC, CPE, CPV] # object with accepted values
+      Survey:
+      Error:
+      Impression:
+        alo: true
+        attrs: [id]
+      Creatives:
+        required: true
+        Creative:
+          alo: true
+          attrs: [id, sequence, adID, apiFramework] # warning adId in v4
+          CreativeExtensions: # warning CretiveExtensions in docs
+            CreativeExtension:
+          Linear:
+            uniq: true # at least one of this subitems
+            attrs: [skipoffset]
+            AdParameters:
+              attrs: [xmlEncoded]
+            Duration:
+              required: true
+            MediaFiles:
+              required: true
+              MediaFile:
+                alo: true
+                attrs:
+                  - id
+                  - delivery:
+                    - progressive
+                    - streaming
+                  - type:
+                  - bitrate
+                  - minBitrate
+                  - maxBitrate
+                  - width:
+                  - height:
+                  - scalable
+                  - mantainAspectRatio
+                  - codec
+                  - apiFramework
+            TrackingEvents:
+              Tracking:
+                attrs:
+                  - event:
+                    # linear
+                    - creativeView
+                    - start
+                    - firstQuartile
+                    - midpoint
+                    - thirdQuartile
+                    - complete
+                    - mute
+                    - unmute
+                    - pause
+                    - rewind
+                    - resume
+                    - fullscreen
+                    - exitFullscreen
+                    - expand
+                    - collapse
+                    - acceptInvitationLinear
+                    - closeLinear
+                    - skip
+                    - progress
+            VideoClicks:
+              ClickThrough:
+                attrs: [id]
+              ClickTracking:
+                attrs: [id]
+              CustomClick:
+                attrs: [id]
+            Icons:
+              Icon:
+                alo: true
+                attrs:
+                  - program:
+                  - width:
+                  - height:
+                  - xPosition:
+                  - yPosition:
+                  - duration
+                  - offset
+                  - apiFramework
+                StaticResource:
+                  alo: true # at least one of this subitems
+                  <<: *StaticResource_types
+                IFrameResource:
+                  alo: true # at least one of this subitems
+                HTMLResource:
+                  alo: true # at least one of this subitems
+                IconClicks:
+                  IconClickThrough:
+                  IconClickTracking:
+                    attrs: [id]
+                IconViewTracking:
+          CompanionAds:
+            uniq: true # at least one of this subitems
+            attrs:
+              - required: [all,any,none] # required here is the param name
+            Companion:
+              attrs:
+                - id
+                - width:
+                - height:
+                - assetWidth
+                - assetHeight
+                - expandedWidth
+                - expandedHeight
+                - apiFramework
+                - adSlotID
+              StaticResource:
+                alo: true # at least one of this subitems
+                <<: *StaticResource_types
+              IFrameResource:
+                alo: true # at least one of this subitems
+              HTMLResource:
+                alo: true # at least one of this subitems
+              AdParameters:
+                attrs: [xmlEncoded]
+              AltText:
+              CompanionClickThrough:
+              CompanionClickTracking:
+                attrs: [id]
+              TrackingEvents:
+                Tracking:
+                  attrs:
+                    # compagnon
+                    - event: [creativeView]
+          NonLinearAds:
+            uniq: true # at least one of this subitems
+            NonLinear:
+              attrs:
+                - id
+                - width:
+                - height:
+                - expandedWidth
+                - expandedHeight
+                - scalable
+                - maintainAspectRatio
+                - minSuggestedDuration
+                - apiFramework
+              StaticResource:
+                alo: true # at least one of this subitems
+                <<: *StaticResource_types
+              IFrameResource:
+                alo: true # at least one of this subitems
+              HTMLResource:
+                alo: true # at least one of this subitems
+              NonLinearClickThrough:
+              NonLinearClickTracking:
+                attrs: [id]
+              AdParameters:
+                attrs: [xmlEncoded]
+            TrackingEvents:
+              Tracking:
+                attrs:
+                  - event:
+                    # non linear
+                    - creativeView
+                    - start # ✝ ? see spec
+                    - firstQuartile # ✝ ? see spec
+                    - midpoint # ✝ ? see spec
+                    - thirdQuartile # ✝ ? see spec
+                    - complete # ✝ ? see spec
+                    - mute # ✝ ? see spec
+                    - unmute # ✝ ? see spec
+                    - pause # ✝ ? see spec
+                    - rewind # ✝ ? see spec
+                    - resume # ✝ ? see spec
+                    - fullscreen
+                    - exitFullscreen
+                    - expand
+                    - collapse
+                    - acceptInvitation
+                    - close
+                    - progress
+      Extensions:
+        Extension:
+          required: true
+          attrs: [type]
+    Wrapper:
+      uniq: true # only one elem of this level
+      attrs:
+        - followAdditonalWrappers
+        - allowMultipleAds
+        - fallbackOnNoAd
+      AdSystem:
+        required: true
+        attrs: [version]
+      VASTAdTagURI:
+        required: true
+      Error:
+      Impression:
+        alo: true
+        attrs: [id]
+      Creatives:
+        Creative:
+          attrs: [id, sequence, adID] # warning adId in v4
+          Linear:
+            uniq: true   # not required in spec, but nonsense to put a Creative without one
+            TrackingEvents:
+              Tracking:
+                attrs:
+                  - event:
+                    # linear
+                    - creativeView
+                    - start
+                    - firstQuartile
+                    - midpoint
+                    - thirdQuartile
+                    - complete
+                    - mute
+                    - unmute
+                    - pause
+                    - rewind
+                    - resume
+                    - fullscreen
+                    - exitFullscreen
+                    - expand
+                    - collapse
+                    - acceptInvitationLinear
+                    - closeLinear
+                    - skip
+                    - progress
+            VideoClicks:
+              ClickTracking:
+                attrs: [id]
+              CustomClick:
+                attrs: [id]
+            Icons:
+              Icon:
+                alo: true
+                attrs:
+                  - program:
+                  - width:
+                  - height:
+                  - xPosition:
+                  - yPosition:
+                  - duration
+                  - offset
+                  - apiFramework
+                StaticResource:
+                  alo: true # at least one of this subitems
+                  <<: *StaticResource_types
+                IFrameResource:
+                  alo: true # at least one of this subitems
+                HTMLResource:
+                  alo: true # at least one of this subitems
+                IconClicks:
+                  IconClickThrough:
+                  IconClickTracking:
+                    # attrs: [id] # not in specs ?
+                IconViewTracking:
+          CompanionAds:
+            uniq: true # at least one of this subitems
+            attrs:
+              - required: [all,any,none] # required here is the param name
+            Companion:
+              attrs:
+                - id
+                - width:
+                - height:
+                - assetWidth
+                - assetHeight
+                - expandedWidth
+                - expandedHeight
+                - apiFramework
+                - adSlotID
+                # - required # : [all,any,none]
+              StaticResource:
+                alo: true # at least one of this subitems
+                <<: *StaticResource_types
+              IFrameResource:
+                alo: true # at least one of this subitems
+              HTMLResource:
+                alo: true # at least one of this subitems
+              AdParameters:
+                attrs: [xmlEncoded]
+              AltText:
+              CompanionClickThrough:
+              CompanionClickTracking:
+                # attrs: [id] # not in spec ?
+              TrackingEvents:
+                Tracking:
+                  attrs:
+                    - event: [creativeView]
+          NonLinearAds:
+            uniq: true # at least one of this subitems
+            NonLinear:
+              attrs:
+                - id
+                - width:
+                - height:
+                - expandedWidth
+                - expandedHeight
+                - scalable
+                - maintainAspectRatio
+                - minSuggestedDuration
+                - apiFramework
+              NonLinearClickTracking:
+                # attrs: [id] # not in the specs ?
+            TrackingEvents:
+              Tracking:
+                attrs:
+                  - event:
+                    # non linear
+                    - creativeView
+                    - start # ✝ ? see spec
+                    - firstQuartile # ✝ ? see spec
+                    - midpoint # ✝ ? see spec
+                    - thirdQuartile # ✝ ? see spec
+                    - complete # ✝ ? see spec
+                    - mute # ✝ ? see spec
+                    - unmute # ✝ ? see spec
+                    - pause # ✝ ? see spec
+                    - rewind # ✝ ? see spec
+                    - resume # ✝ ? see spec
+                    - fullscreen
+                    - exitFullscreen
+                    - expand
+                    - collapse
+                    - acceptInvitation
+                    - close
+                    - progress
+      Extensions:
+        Extension:
+          required: true
+          attrs: [type]
+

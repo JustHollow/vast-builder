@@ -230,7 +230,8 @@ Availables options are :
 |:----------------------|:--------|:------------|
 | `cdata`               | `true`  | Force all contents to use `<![CDATA[ ]]></a>` tags. |
 | `logWarn`             | `true`  | Validation warning and error will be printed to stderr. |
-| `validateOnBuild`     | `true`  | Run a validation before build, usefull for development environment. |
+| `throwOnError`        | `false` | Validation errors will now throw an exception. |
+| `validateOnBuild`     | `false` | Run a validation before build, usefull for development environment. |
 | `spaces`              | `2`     | Number of spaces to be used for indenting XML output. Passing characters like `' '` or `'\t'` are also accepted. |
 
 Following options are also available and inherited from awesome [xml-js](https://www.npmjs.com/package/xml-js) package :

@@ -64,13 +64,13 @@ const addMethodTemplate = (methodName, jsdoc, args) => {
 
 const getSimpleApiMethodDoc = (allContent, openCode) => {
   return `
-${openCode ? '\`\`\`typescript\n' : ''}${allContent}
+${openCode ? '\`\`\`js\n' : ''}${allContent}
 \`\`\`\n`;
 };
 
 const getApiMethodDoc = (comments, methodName, parameters, returnValue, returnValueRealName, lastLvlElement) => {
   let output = `
-\`\`\`typescript
+\`\`\`js
 // ${comments}
 ${methodName}(${parameters.join(', ')}): ${returnValue}
 \`\`\``;
@@ -195,7 +195,7 @@ const asyncGetVastElementDoc = (callback) => {
     }
     if (/\/\/>/.test(line)) {
       methods.push(
-        '\n```typescript\n' + line.replace('>', '').trim()
+        '\n```js\n' + line.replace('>', '').trim()
       );
       commentsOpen = true;
     }

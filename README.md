@@ -9,7 +9,7 @@ Main features are :
 
 - standard Vast xml generation
 - Vast validation based on specifications
-- full JSdoc for functionnal intellisense autocomplete
+- full JSdoc for functionnal intellisense autocomplete (including params)
 
 All APIs are directly generated on top of standard IAB specifications documents : https://www.iab.com/vast/
 
@@ -128,8 +128,8 @@ This is a recursive API, meaning **all** elements can invoke all same methods fr
 
 As XML is a tree, in this API:
 
-- when you "attach" an element to another, you move on the new child a level lower
-- when you "add" an elementto another, you stay on the current object on the same level
+- when you **"attach"** an element to another, you move on the new child a level lower
+- when you **"add"** an element to another, you stay on the current object on the same level
 
 Here is a demo with helping indentation :
 
@@ -157,9 +157,9 @@ Here is a demo with helping indentation :
 
 Full APIs are availables here :
 
-- [APIv2](./build/doc/vast2.md)
-- [APIv3](./build/doc/vast3.md)
-- [APIv4](./build/doc/vast4.md)
+- [APIv2](https://github.com/DavidBabel/vast-builder/blob/master/build/doc/vast2.md)
+- [APIv3](https://github.com/DavidBabel/vast-builder/blob/master/build/doc/vast3.md)
+- [APIv4](https://github.com/DavidBabel/vast-builder/blob/master/build/doc/vast4.md)
 
 ### Common API
 

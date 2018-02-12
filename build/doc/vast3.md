@@ -5,47 +5,47 @@
 ### methods
 
 
-```typescript
+```js
 // return the parent element
 and(): VastElement
 ```
 
-```typescript
+```js
 // alias for .and().and()
 back(): VastElement
 ```
 
-```typescript
+```js
 // turn element content into cdata. return the current element
 cdata(): VastElement
 ```
 
-```typescript
+```js
 // Allow adding custom XML Tag, usefull for <Extensions>
 dangerouslyAttachCustomTag(tagName: string, content: string, attributes: Object): VastElement
 ```
 
-```typescript
+```js
 // Get filtered attributes (only specs valids one will be returned)
 getAttrs(): Object
 ```
 
-```typescript
+```js
 // Return the generated Vast string
 toXml(): string
 ```
 
-```typescript
+```js
 // return the current VAST api version
 getVastVersion(): number
 ```
 
-```typescript
+```js
 // return an array all direct childs with "name"
 getChilds(name: string): Array<VastElement>
 ```
 
-```typescript
+```js
 // validate your current vast build. print error if options.logWarn = true
 validate(): boolean
 ```
@@ -57,7 +57,7 @@ validate(): boolean
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Attach a "VAST" child to current "apiv3". Return "VAST" to move on child level.
 attachVAST(attributes: {
   version:("3.0")
@@ -75,26 +75,25 @@ child of [apiv3](#apiv3) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "Error" child to current "VAST". Return "VAST" to stay on same current level.
 addError(content: string): VAST
 ```
 
 ↘ _go to [VAST](#VAST_3)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Error" child to current "VAST". Return "Error" to move on child level.
 attachError(content: string): Error
 ```
 
 ↘ _go to [Error](#Error_4)_ _(last level element)_
 
-```typescript
+```js
 // Attach a "Ad" child to current "VAST". Return "Ad" to move on child level.
 attachAd(attributes: {
   id: string, 
-  sequence: string, 
-  conditionalAd: string
+  sequence: string
 }): Ad
 ```
 
@@ -115,14 +114,14 @@ child of [VAST](#VAST_3) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Attach a "InLine" child to current "Ad". Return "InLine" to move on child level.
 attachInLine(): InLine
 ```
 
 ↘ _go to [InLine](#InLine_6)_
 
-```typescript
+```js
 // Attach a "Wrapper" child to current "Ad". Return "Wrapper" to move on child level.
 attachWrapper(attributes: {
   followAdditonalWrappers: string, 
@@ -142,7 +141,7 @@ child of [Ad](#Ad_5) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "AdSystem" child to current "InLine". Return "InLine" to stay on same current level.
 addAdSystem(content: string, attributes: {
   version: string
@@ -151,7 +150,7 @@ addAdSystem(content: string, attributes: {
 
 ↘ _go to [InLine](#InLine_6)_ _(current class)_
 
-```typescript
+```js
 // Attach a "AdSystem" child to current "InLine". Return "AdSystem" to move on child level.
 attachAdSystem(content: string, attributes: {
   version: string
@@ -160,49 +159,49 @@ attachAdSystem(content: string, attributes: {
 
 ↘ _go to [AdSystem](#AdSystem_7)_ _(last level element)_
 
-```typescript
+```js
 // Add a "AdTitle" child to current "InLine". Return "InLine" to stay on same current level.
 addAdTitle(content: string): InLine
 ```
 
 ↘ _go to [InLine](#InLine_6)_ _(current class)_
 
-```typescript
+```js
 // Attach a "AdTitle" child to current "InLine". Return "AdTitle" to move on child level.
 attachAdTitle(content: string): AdTitle
 ```
 
 ↘ _go to [AdTitle](#AdTitle_8)_ _(last level element)_
 
-```typescript
+```js
 // Add a "Description" child to current "InLine". Return "InLine" to stay on same current level.
 addDescription(content: string): InLine
 ```
 
 ↘ _go to [InLine](#InLine_6)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Description" child to current "InLine". Return "Description" to move on child level.
 attachDescription(content: string): Description
 ```
 
 ↘ _go to [Description](#Description_9)_ _(last level element)_
 
-```typescript
+```js
 // Add a "Advertiser" child to current "InLine". Return "InLine" to stay on same current level.
 addAdvertiser(content: string): InLine
 ```
 
 ↘ _go to [InLine](#InLine_6)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Advertiser" child to current "InLine". Return "Advertiser" to move on child level.
 attachAdvertiser(content: string): Advertiser
 ```
 
 ↘ _go to [Advertiser](#Advertiser_10)_ _(last level element)_
 
-```typescript
+```js
 // Add a "Pricing" child to current "InLine". Return "InLine" to stay on same current level.
 addPricing(content: string, attributes: {
   currency: string, 
@@ -212,7 +211,7 @@ addPricing(content: string, attributes: {
 
 ↘ _go to [InLine](#InLine_6)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Pricing" child to current "InLine". Return "Pricing" to move on child level.
 attachPricing(content: string, attributes: {
   currency: string, 
@@ -222,35 +221,35 @@ attachPricing(content: string, attributes: {
 
 ↘ _go to [Pricing](#Pricing_11)_ _(last level element)_
 
-```typescript
+```js
 // Add a "Survey" child to current "InLine". Return "InLine" to stay on same current level.
 addSurvey(content: string): InLine
 ```
 
 ↘ _go to [InLine](#InLine_6)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Survey" child to current "InLine". Return "Survey" to move on child level.
 attachSurvey(content: string): Survey
 ```
 
 ↘ _go to [Survey](#Survey_12)_ _(last level element)_
 
-```typescript
+```js
 // Add a "Error" child to current "InLine". Return "InLine" to stay on same current level.
 addError(content: string): InLine
 ```
 
 ↘ _go to [InLine](#InLine_6)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Error" child to current "InLine". Return "Error" to move on child level.
 attachError(content: string): Error
 ```
 
 ↘ _go to [Error](#Error_13)_ _(last level element)_
 
-```typescript
+```js
 // Add a "Impression" child to current "InLine". Return "InLine" to stay on same current level.
 addImpression(content: string, attributes: {
   id: string
@@ -259,7 +258,7 @@ addImpression(content: string, attributes: {
 
 ↘ _go to [InLine](#InLine_6)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Impression" child to current "InLine". Return "Impression" to move on child level.
 attachImpression(content: string, attributes: {
   id: string
@@ -268,14 +267,14 @@ attachImpression(content: string, attributes: {
 
 ↘ _go to [Impression](#Impression_14)_ _(last level element)_
 
-```typescript
+```js
 // Attach a "Creatives" child to current "InLine". Return "Creatives" to move on child level.
 attachCreatives(): Creatives
 ```
 
 ↘ _go to [Creatives](#Creatives_15)_
 
-```typescript
+```js
 // Attach a "Extensions" child to current "InLine". Return "Extensions" to move on child level.
 attachExtensions(): Extensions
 ```
@@ -339,7 +338,7 @@ child of [InLine](#InLine_6) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Attach a "Creative" child to current "Creatives". Return "Creative" to move on child level.
 attachCreative(attributes: {
   id: string, 
@@ -360,14 +359,14 @@ child of [Creatives](#Creatives_15) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Attach a "CreativeExtensions" child to current "Creative". Return "CreativeExtensions" to move on child level.
 attachCreativeExtensions(): CreativeExtensions
 ```
 
 ↘ _go to [CreativeExtensions](#CreativeExtensions_17)_
 
-```typescript
+```js
 // Attach a "Linear" child to current "Creative". Return "Linear" to move on child level.
 attachLinear(attributes: {
   skipoffset: string
@@ -376,7 +375,7 @@ attachLinear(attributes: {
 
 ↘ _go to [Linear](#Linear_19)_
 
-```typescript
+```js
 // Attach a "CompanionAds" child to current "Creative". Return "CompanionAds" to move on child level.
 attachCompanionAds(attributes: {
   required:("all"|"any"|"none")
@@ -385,7 +384,7 @@ attachCompanionAds(attributes: {
 
 ↘ _go to [CompanionAds](#CompanionAds_39)_
 
-```typescript
+```js
 // Attach a "NonLinearAds" child to current "Creative". Return "NonLinearAds" to move on child level.
 attachNonLinearAds(): NonLinearAds
 ```
@@ -401,14 +400,14 @@ child of [Creative](#Creative_16) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "CreativeExtension" child to current "CreativeExtensions". Return "CreativeExtensions" to stay on same current level.
 addCreativeExtension(content: string): CreativeExtensions
 ```
 
 ↘ _go to [CreativeExtensions](#CreativeExtensions_17)_ _(current class)_
 
-```typescript
+```js
 // Attach a "CreativeExtension" child to current "CreativeExtensions". Return "CreativeExtension" to move on child level.
 attachCreativeExtension(content: string): CreativeExtension
 ```
@@ -430,7 +429,7 @@ child of [Creative](#Creative_16) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "AdParameters" child to current "Linear". Return "Linear" to stay on same current level.
 addAdParameters(content: string, attributes: {
   xmlEncoded: string
@@ -439,7 +438,7 @@ addAdParameters(content: string, attributes: {
 
 ↘ _go to [Linear](#Linear_19)_ _(current class)_
 
-```typescript
+```js
 // Attach a "AdParameters" child to current "Linear". Return "AdParameters" to move on child level.
 attachAdParameters(content: string, attributes: {
   xmlEncoded: string
@@ -448,42 +447,42 @@ attachAdParameters(content: string, attributes: {
 
 ↘ _go to [AdParameters](#AdParameters_20)_ _(last level element)_
 
-```typescript
+```js
 // Add a "Duration" child to current "Linear". Return "Linear" to stay on same current level.
 addDuration(content: string): Linear
 ```
 
 ↘ _go to [Linear](#Linear_19)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Duration" child to current "Linear". Return "Duration" to move on child level.
 attachDuration(content: string): Duration
 ```
 
 ↘ _go to [Duration](#Duration_21)_ _(last level element)_
 
-```typescript
+```js
 // Attach a "MediaFiles" child to current "Linear". Return "MediaFiles" to move on child level.
 attachMediaFiles(): MediaFiles
 ```
 
 ↘ _go to [MediaFiles](#MediaFiles_22)_
 
-```typescript
+```js
 // Attach a "TrackingEvents" child to current "Linear". Return "TrackingEvents" to move on child level.
 attachTrackingEvents(): TrackingEvents
 ```
 
 ↘ _go to [TrackingEvents](#TrackingEvents_24)_
 
-```typescript
+```js
 // Attach a "VideoClicks" child to current "Linear". Return "VideoClicks" to move on child level.
 attachVideoClicks(): VideoClicks
 ```
 
 ↘ _go to [VideoClicks](#VideoClicks_26)_
 
-```typescript
+```js
 // Attach a "Icons" child to current "Linear". Return "Icons" to move on child level.
 attachIcons(): Icons
 ```
@@ -511,7 +510,7 @@ child of [Linear](#Linear_19) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "MediaFile" child to current "MediaFiles". Return "MediaFiles" to stay on same current level.
 addMediaFile(content: string, attributes: {
   id: string, 
@@ -531,7 +530,7 @@ addMediaFile(content: string, attributes: {
 
 ↘ _go to [MediaFiles](#MediaFiles_22)_ _(current class)_
 
-```typescript
+```js
 // Attach a "MediaFile" child to current "MediaFiles". Return "MediaFile" to move on child level.
 attachMediaFile(content: string, attributes: {
   id: string, 
@@ -566,7 +565,7 @@ child of [Linear](#Linear_19) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "Tracking" child to current "TrackingEvents". Return "TrackingEvents" to stay on same current level.
 addTracking(content: string, attributes: {
   event:("creativeView"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"mute"|"unmute"|"pause"|"rewind"|"resume"|"fullscreen"|"exitFullscreen"|"expand"|"collapse"|"acceptInvitationLinear"|"closeLinear"|"skip"|"progress")
@@ -575,7 +574,7 @@ addTracking(content: string, attributes: {
 
 ↘ _go to [TrackingEvents](#TrackingEvents_24)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Tracking" child to current "TrackingEvents". Return "Tracking" to move on child level.
 attachTracking(content: string, attributes: {
   event:("creativeView"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"mute"|"unmute"|"pause"|"rewind"|"resume"|"fullscreen"|"exitFullscreen"|"expand"|"collapse"|"acceptInvitationLinear"|"closeLinear"|"skip"|"progress")
@@ -599,7 +598,7 @@ child of [Linear](#Linear_19) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "ClickThrough" child to current "VideoClicks". Return "VideoClicks" to stay on same current level.
 addClickThrough(content: string, attributes: {
   id: string
@@ -608,7 +607,7 @@ addClickThrough(content: string, attributes: {
 
 ↘ _go to [VideoClicks](#VideoClicks_26)_ _(current class)_
 
-```typescript
+```js
 // Attach a "ClickThrough" child to current "VideoClicks". Return "ClickThrough" to move on child level.
 attachClickThrough(content: string, attributes: {
   id: string
@@ -617,7 +616,7 @@ attachClickThrough(content: string, attributes: {
 
 ↘ _go to [ClickThrough](#ClickThrough_27)_ _(last level element)_
 
-```typescript
+```js
 // Add a "ClickTracking" child to current "VideoClicks". Return "VideoClicks" to stay on same current level.
 addClickTracking(content: string, attributes: {
   id: string
@@ -626,7 +625,7 @@ addClickTracking(content: string, attributes: {
 
 ↘ _go to [VideoClicks](#VideoClicks_26)_ _(current class)_
 
-```typescript
+```js
 // Attach a "ClickTracking" child to current "VideoClicks". Return "ClickTracking" to move on child level.
 attachClickTracking(content: string, attributes: {
   id: string
@@ -635,7 +634,7 @@ attachClickTracking(content: string, attributes: {
 
 ↘ _go to [ClickTracking](#ClickTracking_28)_ _(last level element)_
 
-```typescript
+```js
 // Add a "CustomClick" child to current "VideoClicks". Return "VideoClicks" to stay on same current level.
 addCustomClick(content: string, attributes: {
   id: string
@@ -644,7 +643,7 @@ addCustomClick(content: string, attributes: {
 
 ↘ _go to [VideoClicks](#VideoClicks_26)_ _(current class)_
 
-```typescript
+```js
 // Attach a "CustomClick" child to current "VideoClicks". Return "CustomClick" to move on child level.
 attachCustomClick(content: string, attributes: {
   id: string
@@ -680,7 +679,7 @@ child of [Linear](#Linear_19) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Attach a "Icon" child to current "Icons". Return "Icon" to move on child level.
 attachIcon(attributes: {
   program: string, 
@@ -705,7 +704,7 @@ child of [Icons](#Icons_30) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "StaticResource" child to current "Icon". Return "Icon" to stay on same current level.
 addStaticResource(content: string, attributes: {
   creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
@@ -714,7 +713,7 @@ addStaticResource(content: string, attributes: {
 
 ↘ _go to [Icon](#Icon_31)_ _(current class)_
 
-```typescript
+```js
 // Attach a "StaticResource" child to current "Icon". Return "StaticResource" to move on child level.
 attachStaticResource(content: string, attributes: {
   creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
@@ -723,49 +722,49 @@ attachStaticResource(content: string, attributes: {
 
 ↘ _go to [StaticResource](#StaticResource_32)_ _(last level element)_
 
-```typescript
+```js
 // Add a "IFrameResource" child to current "Icon". Return "Icon" to stay on same current level.
 addIFrameResource(content: string): Icon
 ```
 
 ↘ _go to [Icon](#Icon_31)_ _(current class)_
 
-```typescript
+```js
 // Attach a "IFrameResource" child to current "Icon". Return "IFrameResource" to move on child level.
 attachIFrameResource(content: string): IFrameResource
 ```
 
 ↘ _go to [IFrameResource](#IFrameResource_33)_ _(last level element)_
 
-```typescript
+```js
 // Add a "HTMLResource" child to current "Icon". Return "Icon" to stay on same current level.
 addHTMLResource(content: string): Icon
 ```
 
 ↘ _go to [Icon](#Icon_31)_ _(current class)_
 
-```typescript
+```js
 // Attach a "HTMLResource" child to current "Icon". Return "HTMLResource" to move on child level.
 attachHTMLResource(content: string): HTMLResource
 ```
 
 ↘ _go to [HTMLResource](#HTMLResource_34)_ _(last level element)_
 
-```typescript
+```js
 // Attach a "IconClicks" child to current "Icon". Return "IconClicks" to move on child level.
 attachIconClicks(): IconClicks
 ```
 
 ↘ _go to [IconClicks](#IconClicks_35)_
 
-```typescript
+```js
 // Add a "IconViewTracking" child to current "Icon". Return "Icon" to stay on same current level.
 addIconViewTracking(content: string): Icon
 ```
 
 ↘ _go to [Icon](#Icon_31)_ _(current class)_
 
-```typescript
+```js
 // Attach a "IconViewTracking" child to current "Icon". Return "IconViewTracking" to move on child level.
 attachIconViewTracking(content: string): IconViewTracking
 ```
@@ -799,21 +798,21 @@ child of [Icon](#Icon_31) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "IconClickThrough" child to current "IconClicks". Return "IconClicks" to stay on same current level.
 addIconClickThrough(content: string): IconClicks
 ```
 
 ↘ _go to [IconClicks](#IconClicks_35)_ _(current class)_
 
-```typescript
+```js
 // Attach a "IconClickThrough" child to current "IconClicks". Return "IconClickThrough" to move on child level.
 attachIconClickThrough(content: string): IconClickThrough
 ```
 
 ↘ _go to [IconClickThrough](#IconClickThrough_36)_ _(last level element)_
 
-```typescript
+```js
 // Add a "IconClickTracking" child to current "IconClicks". Return "IconClicks" to stay on same current level.
 addIconClickTracking(content: string, attributes: {
   id: string
@@ -822,7 +821,7 @@ addIconClickTracking(content: string, attributes: {
 
 ↘ _go to [IconClicks](#IconClicks_35)_ _(current class)_
 
-```typescript
+```js
 // Attach a "IconClickTracking" child to current "IconClicks". Return "IconClickTracking" to move on child level.
 attachIconClickTracking(content: string, attributes: {
   id: string
@@ -858,7 +857,7 @@ child of [Creative](#Creative_16) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Attach a "Companion" child to current "CompanionAds". Return "Companion" to move on child level.
 attachCompanion(attributes: {
   id: string, 
@@ -884,7 +883,7 @@ child of [CompanionAds](#CompanionAds_39) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "StaticResource" child to current "Companion". Return "Companion" to stay on same current level.
 addStaticResource(content: string, attributes: {
   creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
@@ -893,7 +892,7 @@ addStaticResource(content: string, attributes: {
 
 ↘ _go to [Companion](#Companion_40)_ _(current class)_
 
-```typescript
+```js
 // Attach a "StaticResource" child to current "Companion". Return "StaticResource" to move on child level.
 attachStaticResource(content: string, attributes: {
   creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
@@ -902,35 +901,35 @@ attachStaticResource(content: string, attributes: {
 
 ↘ _go to [StaticResource](#StaticResource_41)_ _(last level element)_
 
-```typescript
+```js
 // Add a "IFrameResource" child to current "Companion". Return "Companion" to stay on same current level.
 addIFrameResource(content: string): Companion
 ```
 
 ↘ _go to [Companion](#Companion_40)_ _(current class)_
 
-```typescript
+```js
 // Attach a "IFrameResource" child to current "Companion". Return "IFrameResource" to move on child level.
 attachIFrameResource(content: string): IFrameResource
 ```
 
 ↘ _go to [IFrameResource](#IFrameResource_42)_ _(last level element)_
 
-```typescript
+```js
 // Add a "HTMLResource" child to current "Companion". Return "Companion" to stay on same current level.
 addHTMLResource(content: string): Companion
 ```
 
 ↘ _go to [Companion](#Companion_40)_ _(current class)_
 
-```typescript
+```js
 // Attach a "HTMLResource" child to current "Companion". Return "HTMLResource" to move on child level.
 attachHTMLResource(content: string): HTMLResource
 ```
 
 ↘ _go to [HTMLResource](#HTMLResource_43)_ _(last level element)_
 
-```typescript
+```js
 // Add a "AdParameters" child to current "Companion". Return "Companion" to stay on same current level.
 addAdParameters(content: string, attributes: {
   xmlEncoded: string
@@ -939,7 +938,7 @@ addAdParameters(content: string, attributes: {
 
 ↘ _go to [Companion](#Companion_40)_ _(current class)_
 
-```typescript
+```js
 // Attach a "AdParameters" child to current "Companion". Return "AdParameters" to move on child level.
 attachAdParameters(content: string, attributes: {
   xmlEncoded: string
@@ -948,35 +947,35 @@ attachAdParameters(content: string, attributes: {
 
 ↘ _go to [AdParameters](#AdParameters_44)_ _(last level element)_
 
-```typescript
+```js
 // Add a "AltText" child to current "Companion". Return "Companion" to stay on same current level.
 addAltText(content: string): Companion
 ```
 
 ↘ _go to [Companion](#Companion_40)_ _(current class)_
 
-```typescript
+```js
 // Attach a "AltText" child to current "Companion". Return "AltText" to move on child level.
 attachAltText(content: string): AltText
 ```
 
 ↘ _go to [AltText](#AltText_45)_ _(last level element)_
 
-```typescript
+```js
 // Add a "CompanionClickThrough" child to current "Companion". Return "Companion" to stay on same current level.
 addCompanionClickThrough(content: string): Companion
 ```
 
 ↘ _go to [Companion](#Companion_40)_ _(current class)_
 
-```typescript
+```js
 // Attach a "CompanionClickThrough" child to current "Companion". Return "CompanionClickThrough" to move on child level.
 attachCompanionClickThrough(content: string): CompanionClickThrough
 ```
 
 ↘ _go to [CompanionClickThrough](#CompanionClickThrough_46)_ _(last level element)_
 
-```typescript
+```js
 // Add a "CompanionClickTracking" child to current "Companion". Return "Companion" to stay on same current level.
 addCompanionClickTracking(content: string, attributes: {
   id: string
@@ -985,7 +984,7 @@ addCompanionClickTracking(content: string, attributes: {
 
 ↘ _go to [Companion](#Companion_40)_ _(current class)_
 
-```typescript
+```js
 // Attach a "CompanionClickTracking" child to current "Companion". Return "CompanionClickTracking" to move on child level.
 attachCompanionClickTracking(content: string, attributes: {
   id: string
@@ -994,7 +993,7 @@ attachCompanionClickTracking(content: string, attributes: {
 
 ↘ _go to [CompanionClickTracking](#CompanionClickTracking_47)_ _(last level element)_
 
-```typescript
+```js
 // Attach a "TrackingEvents" child to current "Companion". Return "TrackingEvents" to move on child level.
 attachTrackingEvents(): TrackingEvents
 ```
@@ -1052,7 +1051,7 @@ child of [Companion](#Companion_40) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "Tracking" child to current "TrackingEvents". Return "TrackingEvents" to stay on same current level.
 addTracking(content: string, attributes: {
   event:("creativeView")
@@ -1061,7 +1060,7 @@ addTracking(content: string, attributes: {
 
 ↘ _go to [TrackingEvents](#TrackingEvents_48)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Tracking" child to current "TrackingEvents". Return "Tracking" to move on child level.
 attachTracking(content: string, attributes: {
   event:("creativeView")
@@ -1085,7 +1084,7 @@ child of [Creative](#Creative_16) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Attach a "NonLinear" child to current "NonLinearAds". Return "NonLinear" to move on child level.
 attachNonLinear(attributes: {
   id: string, 
@@ -1102,7 +1101,7 @@ attachNonLinear(attributes: {
 
 ↘ _go to [NonLinear](#NonLinear_51)_
 
-```typescript
+```js
 // Attach a "TrackingEvents" child to current "NonLinearAds". Return "TrackingEvents" to move on child level.
 attachTrackingEvents(): TrackingEvents
 ```
@@ -1118,7 +1117,7 @@ child of [NonLinearAds](#NonLinearAds_50) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "StaticResource" child to current "NonLinear". Return "NonLinear" to stay on same current level.
 addStaticResource(content: string, attributes: {
   creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
@@ -1127,7 +1126,7 @@ addStaticResource(content: string, attributes: {
 
 ↘ _go to [NonLinear](#NonLinear_51)_ _(current class)_
 
-```typescript
+```js
 // Attach a "StaticResource" child to current "NonLinear". Return "StaticResource" to move on child level.
 attachStaticResource(content: string, attributes: {
   creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
@@ -1136,49 +1135,49 @@ attachStaticResource(content: string, attributes: {
 
 ↘ _go to [StaticResource](#StaticResource_52)_ _(last level element)_
 
-```typescript
+```js
 // Add a "IFrameResource" child to current "NonLinear". Return "NonLinear" to stay on same current level.
 addIFrameResource(content: string): NonLinear
 ```
 
 ↘ _go to [NonLinear](#NonLinear_51)_ _(current class)_
 
-```typescript
+```js
 // Attach a "IFrameResource" child to current "NonLinear". Return "IFrameResource" to move on child level.
 attachIFrameResource(content: string): IFrameResource
 ```
 
 ↘ _go to [IFrameResource](#IFrameResource_53)_ _(last level element)_
 
-```typescript
+```js
 // Add a "HTMLResource" child to current "NonLinear". Return "NonLinear" to stay on same current level.
 addHTMLResource(content: string): NonLinear
 ```
 
 ↘ _go to [NonLinear](#NonLinear_51)_ _(current class)_
 
-```typescript
+```js
 // Attach a "HTMLResource" child to current "NonLinear". Return "HTMLResource" to move on child level.
 attachHTMLResource(content: string): HTMLResource
 ```
 
 ↘ _go to [HTMLResource](#HTMLResource_54)_ _(last level element)_
 
-```typescript
+```js
 // Add a "NonLinearClickThrough" child to current "NonLinear". Return "NonLinear" to stay on same current level.
 addNonLinearClickThrough(content: string): NonLinear
 ```
 
 ↘ _go to [NonLinear](#NonLinear_51)_ _(current class)_
 
-```typescript
+```js
 // Attach a "NonLinearClickThrough" child to current "NonLinear". Return "NonLinearClickThrough" to move on child level.
 attachNonLinearClickThrough(content: string): NonLinearClickThrough
 ```
 
 ↘ _go to [NonLinearClickThrough](#NonLinearClickThrough_55)_ _(last level element)_
 
-```typescript
+```js
 // Add a "NonLinearClickTracking" child to current "NonLinear". Return "NonLinear" to stay on same current level.
 addNonLinearClickTracking(content: string, attributes: {
   id: string
@@ -1187,7 +1186,7 @@ addNonLinearClickTracking(content: string, attributes: {
 
 ↘ _go to [NonLinear](#NonLinear_51)_ _(current class)_
 
-```typescript
+```js
 // Attach a "NonLinearClickTracking" child to current "NonLinear". Return "NonLinearClickTracking" to move on child level.
 attachNonLinearClickTracking(content: string, attributes: {
   id: string
@@ -1196,7 +1195,7 @@ attachNonLinearClickTracking(content: string, attributes: {
 
 ↘ _go to [NonLinearClickTracking](#NonLinearClickTracking_56)_ _(last level element)_
 
-```typescript
+```js
 // Add a "AdParameters" child to current "NonLinear". Return "NonLinear" to stay on same current level.
 addAdParameters(content: string, attributes: {
   xmlEncoded: string
@@ -1205,7 +1204,7 @@ addAdParameters(content: string, attributes: {
 
 ↘ _go to [NonLinear](#NonLinear_51)_ _(current class)_
 
-```typescript
+```js
 // Attach a "AdParameters" child to current "NonLinear". Return "AdParameters" to move on child level.
 attachAdParameters(content: string, attributes: {
   xmlEncoded: string
@@ -1259,7 +1258,7 @@ child of [NonLinearAds](#NonLinearAds_50) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "Tracking" child to current "TrackingEvents". Return "TrackingEvents" to stay on same current level.
 addTracking(content: string, attributes: {
   event:("creativeView"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"mute"|"unmute"|"pause"|"rewind"|"resume"|"fullscreen"|"exitFullscreen"|"expand"|"collapse"|"acceptInvitation"|"close"|"progress")
@@ -1268,7 +1267,7 @@ addTracking(content: string, attributes: {
 
 ↘ _go to [TrackingEvents](#TrackingEvents_58)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Tracking" child to current "TrackingEvents". Return "Tracking" to move on child level.
 attachTracking(content: string, attributes: {
   event:("creativeView"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"mute"|"unmute"|"pause"|"rewind"|"resume"|"fullscreen"|"exitFullscreen"|"expand"|"collapse"|"acceptInvitation"|"close"|"progress")
@@ -1292,7 +1291,7 @@ child of [InLine](#InLine_6) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "Extension" child to current "Extensions". Return "Extensions" to stay on same current level.
 addExtension(content: string, attributes: {
   type: string
@@ -1301,7 +1300,7 @@ addExtension(content: string, attributes: {
 
 ↘ _go to [Extensions](#Extensions_60)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Extension" child to current "Extensions". Return "Extension" to move on child level.
 attachExtension(content: string, attributes: {
   type: string
@@ -1325,7 +1324,7 @@ child of [Ad](#Ad_5) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "AdSystem" child to current "Wrapper". Return "Wrapper" to stay on same current level.
 addAdSystem(content: string, attributes: {
   version: string
@@ -1334,7 +1333,7 @@ addAdSystem(content: string, attributes: {
 
 ↘ _go to [Wrapper](#Wrapper_62)_ _(current class)_
 
-```typescript
+```js
 // Attach a "AdSystem" child to current "Wrapper". Return "AdSystem" to move on child level.
 attachAdSystem(content: string, attributes: {
   version: string
@@ -1343,35 +1342,35 @@ attachAdSystem(content: string, attributes: {
 
 ↘ _go to [AdSystem](#AdSystem_63)_ _(last level element)_
 
-```typescript
+```js
 // Add a "VASTAdTagURI" child to current "Wrapper". Return "Wrapper" to stay on same current level.
 addVASTAdTagURI(content: string): Wrapper
 ```
 
 ↘ _go to [Wrapper](#Wrapper_62)_ _(current class)_
 
-```typescript
+```js
 // Attach a "VASTAdTagURI" child to current "Wrapper". Return "VASTAdTagURI" to move on child level.
 attachVASTAdTagURI(content: string): VASTAdTagURI
 ```
 
 ↘ _go to [VASTAdTagURI](#VASTAdTagURI_64)_ _(last level element)_
 
-```typescript
+```js
 // Add a "Error" child to current "Wrapper". Return "Wrapper" to stay on same current level.
 addError(content: string): Wrapper
 ```
 
 ↘ _go to [Wrapper](#Wrapper_62)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Error" child to current "Wrapper". Return "Error" to move on child level.
 attachError(content: string): Error
 ```
 
 ↘ _go to [Error](#Error_65)_ _(last level element)_
 
-```typescript
+```js
 // Add a "Impression" child to current "Wrapper". Return "Wrapper" to stay on same current level.
 addImpression(content: string, attributes: {
   id: string
@@ -1380,7 +1379,7 @@ addImpression(content: string, attributes: {
 
 ↘ _go to [Wrapper](#Wrapper_62)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Impression" child to current "Wrapper". Return "Impression" to move on child level.
 attachImpression(content: string, attributes: {
   id: string
@@ -1389,14 +1388,14 @@ attachImpression(content: string, attributes: {
 
 ↘ _go to [Impression](#Impression_66)_ _(last level element)_
 
-```typescript
+```js
 // Attach a "Creatives" child to current "Wrapper". Return "Creatives" to move on child level.
 attachCreatives(): Creatives
 ```
 
 ↘ _go to [Creatives](#Creatives_67)_
 
-```typescript
+```js
 // Attach a "Extensions" child to current "Wrapper". Return "Extensions" to move on child level.
 attachExtensions(): Extensions
 ```
@@ -1436,7 +1435,7 @@ child of [Wrapper](#Wrapper_62) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Attach a "Creative" child to current "Creatives". Return "Creative" to move on child level.
 attachCreative(attributes: {
   id: string, 
@@ -1456,14 +1455,14 @@ child of [Creatives](#Creatives_67) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Attach a "Linear" child to current "Creative". Return "Linear" to move on child level.
 attachLinear(): Linear
 ```
 
 ↘ _go to [Linear](#Linear_69)_
 
-```typescript
+```js
 // Attach a "CompanionAds" child to current "Creative". Return "CompanionAds" to move on child level.
 attachCompanionAds(attributes: {
   required:("all"|"any"|"none")
@@ -1472,7 +1471,7 @@ attachCompanionAds(attributes: {
 
 ↘ _go to [CompanionAds](#CompanionAds_84)_
 
-```typescript
+```js
 // Attach a "NonLinearAds" child to current "Creative". Return "NonLinearAds" to move on child level.
 attachNonLinearAds(): NonLinearAds
 ```
@@ -1488,21 +1487,21 @@ child of [Creative](#Creative_68) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Attach a "TrackingEvents" child to current "Linear". Return "TrackingEvents" to move on child level.
 attachTrackingEvents(): TrackingEvents
 ```
 
 ↘ _go to [TrackingEvents](#TrackingEvents_70)_
 
-```typescript
+```js
 // Attach a "VideoClicks" child to current "Linear". Return "VideoClicks" to move on child level.
 attachVideoClicks(): VideoClicks
 ```
 
 ↘ _go to [VideoClicks](#VideoClicks_72)_
 
-```typescript
+```js
 // Attach a "Icons" child to current "Linear". Return "Icons" to move on child level.
 attachIcons(): Icons
 ```
@@ -1518,7 +1517,7 @@ child of [Linear](#Linear_69) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "Tracking" child to current "TrackingEvents". Return "TrackingEvents" to stay on same current level.
 addTracking(content: string, attributes: {
   event:("creativeView"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"mute"|"unmute"|"pause"|"rewind"|"resume"|"fullscreen"|"exitFullscreen"|"expand"|"collapse"|"acceptInvitationLinear"|"closeLinear"|"skip"|"progress")
@@ -1527,7 +1526,7 @@ addTracking(content: string, attributes: {
 
 ↘ _go to [TrackingEvents](#TrackingEvents_70)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Tracking" child to current "TrackingEvents". Return "Tracking" to move on child level.
 attachTracking(content: string, attributes: {
   event:("creativeView"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"mute"|"unmute"|"pause"|"rewind"|"resume"|"fullscreen"|"exitFullscreen"|"expand"|"collapse"|"acceptInvitationLinear"|"closeLinear"|"skip"|"progress")
@@ -1551,7 +1550,7 @@ child of [Linear](#Linear_69) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "ClickTracking" child to current "VideoClicks". Return "VideoClicks" to stay on same current level.
 addClickTracking(content: string, attributes: {
   id: string
@@ -1560,7 +1559,7 @@ addClickTracking(content: string, attributes: {
 
 ↘ _go to [VideoClicks](#VideoClicks_72)_ _(current class)_
 
-```typescript
+```js
 // Attach a "ClickTracking" child to current "VideoClicks". Return "ClickTracking" to move on child level.
 attachClickTracking(content: string, attributes: {
   id: string
@@ -1569,7 +1568,7 @@ attachClickTracking(content: string, attributes: {
 
 ↘ _go to [ClickTracking](#ClickTracking_73)_ _(last level element)_
 
-```typescript
+```js
 // Add a "CustomClick" child to current "VideoClicks". Return "VideoClicks" to stay on same current level.
 addCustomClick(content: string, attributes: {
   id: string
@@ -1578,7 +1577,7 @@ addCustomClick(content: string, attributes: {
 
 ↘ _go to [VideoClicks](#VideoClicks_72)_ _(current class)_
 
-```typescript
+```js
 // Attach a "CustomClick" child to current "VideoClicks". Return "CustomClick" to move on child level.
 attachCustomClick(content: string, attributes: {
   id: string
@@ -1608,7 +1607,7 @@ child of [Linear](#Linear_69) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Attach a "Icon" child to current "Icons". Return "Icon" to move on child level.
 attachIcon(attributes: {
   program: string, 
@@ -1633,7 +1632,7 @@ child of [Icons](#Icons_75) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "StaticResource" child to current "Icon". Return "Icon" to stay on same current level.
 addStaticResource(content: string, attributes: {
   creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
@@ -1642,7 +1641,7 @@ addStaticResource(content: string, attributes: {
 
 ↘ _go to [Icon](#Icon_76)_ _(current class)_
 
-```typescript
+```js
 // Attach a "StaticResource" child to current "Icon". Return "StaticResource" to move on child level.
 attachStaticResource(content: string, attributes: {
   creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
@@ -1651,49 +1650,49 @@ attachStaticResource(content: string, attributes: {
 
 ↘ _go to [StaticResource](#StaticResource_77)_ _(last level element)_
 
-```typescript
+```js
 // Add a "IFrameResource" child to current "Icon". Return "Icon" to stay on same current level.
 addIFrameResource(content: string): Icon
 ```
 
 ↘ _go to [Icon](#Icon_76)_ _(current class)_
 
-```typescript
+```js
 // Attach a "IFrameResource" child to current "Icon". Return "IFrameResource" to move on child level.
 attachIFrameResource(content: string): IFrameResource
 ```
 
 ↘ _go to [IFrameResource](#IFrameResource_78)_ _(last level element)_
 
-```typescript
+```js
 // Add a "HTMLResource" child to current "Icon". Return "Icon" to stay on same current level.
 addHTMLResource(content: string): Icon
 ```
 
 ↘ _go to [Icon](#Icon_76)_ _(current class)_
 
-```typescript
+```js
 // Attach a "HTMLResource" child to current "Icon". Return "HTMLResource" to move on child level.
 attachHTMLResource(content: string): HTMLResource
 ```
 
 ↘ _go to [HTMLResource](#HTMLResource_79)_ _(last level element)_
 
-```typescript
+```js
 // Attach a "IconClicks" child to current "Icon". Return "IconClicks" to move on child level.
 attachIconClicks(): IconClicks
 ```
 
 ↘ _go to [IconClicks](#IconClicks_80)_
 
-```typescript
+```js
 // Add a "IconViewTracking" child to current "Icon". Return "Icon" to stay on same current level.
 addIconViewTracking(content: string): Icon
 ```
 
 ↘ _go to [Icon](#Icon_76)_ _(current class)_
 
-```typescript
+```js
 // Attach a "IconViewTracking" child to current "Icon". Return "IconViewTracking" to move on child level.
 attachIconViewTracking(content: string): IconViewTracking
 ```
@@ -1727,28 +1726,28 @@ child of [Icon](#Icon_76) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "IconClickThrough" child to current "IconClicks". Return "IconClicks" to stay on same current level.
 addIconClickThrough(content: string): IconClicks
 ```
 
 ↘ _go to [IconClicks](#IconClicks_80)_ _(current class)_
 
-```typescript
+```js
 // Attach a "IconClickThrough" child to current "IconClicks". Return "IconClickThrough" to move on child level.
 attachIconClickThrough(content: string): IconClickThrough
 ```
 
 ↘ _go to [IconClickThrough](#IconClickThrough_81)_ _(last level element)_
 
-```typescript
+```js
 // Add a "IconClickTracking" child to current "IconClicks". Return "IconClicks" to stay on same current level.
 addIconClickTracking(content: string): IconClicks
 ```
 
 ↘ _go to [IconClicks](#IconClicks_80)_ _(current class)_
 
-```typescript
+```js
 // Attach a "IconClickTracking" child to current "IconClicks". Return "IconClickTracking" to move on child level.
 attachIconClickTracking(content: string): IconClickTracking
 ```
@@ -1782,7 +1781,7 @@ child of [Creative](#Creative_68) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Attach a "Companion" child to current "CompanionAds". Return "Companion" to move on child level.
 attachCompanion(attributes: {
   id: string, 
@@ -1808,7 +1807,7 @@ child of [CompanionAds](#CompanionAds_84) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "StaticResource" child to current "Companion". Return "Companion" to stay on same current level.
 addStaticResource(content: string, attributes: {
   creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
@@ -1817,7 +1816,7 @@ addStaticResource(content: string, attributes: {
 
 ↘ _go to [Companion](#Companion_85)_ _(current class)_
 
-```typescript
+```js
 // Attach a "StaticResource" child to current "Companion". Return "StaticResource" to move on child level.
 attachStaticResource(content: string, attributes: {
   creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
@@ -1826,35 +1825,35 @@ attachStaticResource(content: string, attributes: {
 
 ↘ _go to [StaticResource](#StaticResource_86)_ _(last level element)_
 
-```typescript
+```js
 // Add a "IFrameResource" child to current "Companion". Return "Companion" to stay on same current level.
 addIFrameResource(content: string): Companion
 ```
 
 ↘ _go to [Companion](#Companion_85)_ _(current class)_
 
-```typescript
+```js
 // Attach a "IFrameResource" child to current "Companion". Return "IFrameResource" to move on child level.
 attachIFrameResource(content: string): IFrameResource
 ```
 
 ↘ _go to [IFrameResource](#IFrameResource_87)_ _(last level element)_
 
-```typescript
+```js
 // Add a "HTMLResource" child to current "Companion". Return "Companion" to stay on same current level.
 addHTMLResource(content: string): Companion
 ```
 
 ↘ _go to [Companion](#Companion_85)_ _(current class)_
 
-```typescript
+```js
 // Attach a "HTMLResource" child to current "Companion". Return "HTMLResource" to move on child level.
 attachHTMLResource(content: string): HTMLResource
 ```
 
 ↘ _go to [HTMLResource](#HTMLResource_88)_ _(last level element)_
 
-```typescript
+```js
 // Add a "AdParameters" child to current "Companion". Return "Companion" to stay on same current level.
 addAdParameters(content: string, attributes: {
   xmlEncoded: string
@@ -1863,7 +1862,7 @@ addAdParameters(content: string, attributes: {
 
 ↘ _go to [Companion](#Companion_85)_ _(current class)_
 
-```typescript
+```js
 // Attach a "AdParameters" child to current "Companion". Return "AdParameters" to move on child level.
 attachAdParameters(content: string, attributes: {
   xmlEncoded: string
@@ -1872,49 +1871,49 @@ attachAdParameters(content: string, attributes: {
 
 ↘ _go to [AdParameters](#AdParameters_89)_ _(last level element)_
 
-```typescript
+```js
 // Add a "AltText" child to current "Companion". Return "Companion" to stay on same current level.
 addAltText(content: string): Companion
 ```
 
 ↘ _go to [Companion](#Companion_85)_ _(current class)_
 
-```typescript
+```js
 // Attach a "AltText" child to current "Companion". Return "AltText" to move on child level.
 attachAltText(content: string): AltText
 ```
 
 ↘ _go to [AltText](#AltText_90)_ _(last level element)_
 
-```typescript
+```js
 // Add a "CompanionClickThrough" child to current "Companion". Return "Companion" to stay on same current level.
 addCompanionClickThrough(content: string): Companion
 ```
 
 ↘ _go to [Companion](#Companion_85)_ _(current class)_
 
-```typescript
+```js
 // Attach a "CompanionClickThrough" child to current "Companion". Return "CompanionClickThrough" to move on child level.
 attachCompanionClickThrough(content: string): CompanionClickThrough
 ```
 
 ↘ _go to [CompanionClickThrough](#CompanionClickThrough_91)_ _(last level element)_
 
-```typescript
+```js
 // Add a "CompanionClickTracking" child to current "Companion". Return "Companion" to stay on same current level.
 addCompanionClickTracking(content: string): Companion
 ```
 
 ↘ _go to [Companion](#Companion_85)_ _(current class)_
 
-```typescript
+```js
 // Attach a "CompanionClickTracking" child to current "Companion". Return "CompanionClickTracking" to move on child level.
 attachCompanionClickTracking(content: string): CompanionClickTracking
 ```
 
 ↘ _go to [CompanionClickTracking](#CompanionClickTracking_92)_ _(last level element)_
 
-```typescript
+```js
 // Attach a "TrackingEvents" child to current "Companion". Return "TrackingEvents" to move on child level.
 attachTrackingEvents(): TrackingEvents
 ```
@@ -1972,7 +1971,7 @@ child of [Companion](#Companion_85) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "Tracking" child to current "TrackingEvents". Return "TrackingEvents" to stay on same current level.
 addTracking(content: string, attributes: {
   event:("creativeView")
@@ -1981,7 +1980,7 @@ addTracking(content: string, attributes: {
 
 ↘ _go to [TrackingEvents](#TrackingEvents_93)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Tracking" child to current "TrackingEvents". Return "Tracking" to move on child level.
 attachTracking(content: string, attributes: {
   event:("creativeView")
@@ -2005,7 +2004,7 @@ child of [Creative](#Creative_68) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Attach a "NonLinear" child to current "NonLinearAds". Return "NonLinear" to move on child level.
 attachNonLinear(attributes: {
   id: string, 
@@ -2022,7 +2021,7 @@ attachNonLinear(attributes: {
 
 ↘ _go to [NonLinear](#NonLinear_96)_
 
-```typescript
+```js
 // Attach a "TrackingEvents" child to current "NonLinearAds". Return "TrackingEvents" to move on child level.
 attachTrackingEvents(): TrackingEvents
 ```
@@ -2038,14 +2037,14 @@ child of [NonLinearAds](#NonLinearAds_95) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "NonLinearClickTracking" child to current "NonLinear". Return "NonLinear" to stay on same current level.
 addNonLinearClickTracking(content: string): NonLinear
 ```
 
 ↘ _go to [NonLinear](#NonLinear_96)_ _(current class)_
 
-```typescript
+```js
 // Attach a "NonLinearClickTracking" child to current "NonLinear". Return "NonLinearClickTracking" to move on child level.
 attachNonLinearClickTracking(content: string): NonLinearClickTracking
 ```
@@ -2067,7 +2066,7 @@ child of [NonLinearAds](#NonLinearAds_95) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "Tracking" child to current "TrackingEvents". Return "TrackingEvents" to stay on same current level.
 addTracking(content: string, attributes: {
   event:("creativeView"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"mute"|"unmute"|"pause"|"rewind"|"resume"|"fullscreen"|"exitFullscreen"|"expand"|"collapse"|"acceptInvitation"|"close"|"progress")
@@ -2076,7 +2075,7 @@ addTracking(content: string, attributes: {
 
 ↘ _go to [TrackingEvents](#TrackingEvents_98)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Tracking" child to current "TrackingEvents". Return "Tracking" to move on child level.
 attachTracking(content: string, attributes: {
   event:("creativeView"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"mute"|"unmute"|"pause"|"rewind"|"resume"|"fullscreen"|"exitFullscreen"|"expand"|"collapse"|"acceptInvitation"|"close"|"progress")
@@ -2100,7 +2099,7 @@ child of [Wrapper](#Wrapper_62) ↗
 
 _all herited from [VastElement](#VastElement)_ and : 
 
-```typescript
+```js
 // Add a "Extension" child to current "Extensions". Return "Extensions" to stay on same current level.
 addExtension(content: string, attributes: {
   type: string
@@ -2109,7 +2108,7 @@ addExtension(content: string, attributes: {
 
 ↘ _go to [Extensions](#Extensions_100)_ _(current class)_
 
-```typescript
+```js
 // Attach a "Extension" child to current "Extensions". Return "Extension" to move on child level.
 attachExtension(content: string, attributes: {
   type: string

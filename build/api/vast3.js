@@ -2552,11 +2552,11 @@ class VAST_3 extends VastElement {
     return this.attachError(content).and();
   }
   /** 
-   * @param {{id: string, sequence: string, conditionalAd: string}} attributes
+   * @param {{id: string, sequence: string}} attributes
    * @returns {Ad_5} 
    */
   attachAd(attributes) {
-    const newElem = new Ad_5('Ad', this, {"attrs":["id","sequence","conditionalAd"]} /*: Infos*/, attributes);
+    const newElem = new Ad_5('Ad', this, {"attrs":["id","sequence"]} /*: Infos*/, attributes);
     this.childs.push(newElem);
     return newElem;
   }

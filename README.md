@@ -161,7 +161,7 @@ Full APIs are availables here :
 - [APIv3](https://github.com/DavidBabel/vast-builder/blob/master/build/doc/vast3.md)
 - [APIv4](https://github.com/DavidBabel/vast-builder/blob/master/build/doc/vast4.md)
 
-### Common API
+### Common Node API
 
 Every elements inherits from a generic VastElement, all methods return a VastElement child allowing to chain methods calls.
 
@@ -200,10 +200,13 @@ const grandFather = VastElement.back();
 // nb: if option cdata is true, it does nothing
 VastElement.cdata();
 
-// content: return the string content (without cdata)
+// content: return the string content (without any cdata)
 const stringContent = VastElement.content;
 
-// getAttrs: return sanitized attributes object (invalid one are removed)
+// content: return the raw attributes object
+const attributes = VastElement.attrs;
+
+// getAttrs: return sanitized attributes object (invalid attributes are removed)
 const attrsObject = VastElement.getAttrs();
 
 // getChilds: return an array with childs filtered by "name"
@@ -216,6 +219,7 @@ const intVersion = VastElement.getVastVersion();
 
 // validate: assert the entire VAST is valid
 // nb: if "logWarn" option is true, it will print errors to stderr
+// nb: if "throwOnError" option is true, it will throw an exception if the vast is not valid
 const boolValid = VastElement.validate();
 
 // toXml: return the generated Vast xml string
@@ -224,6 +228,7 @@ const xmlVast = VastElement.toXml();
 
 ## Options
 
+You can pass options to the `createVast.vX(options)` method.
 Availables options are :
 
 | Option                | Default | Description |

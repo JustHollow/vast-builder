@@ -21,6 +21,8 @@ All APIs are directly generated on top of standard IAB specifications documents 
 
 ### Install
 
+It requires node 8 or above.
+
 ```bash
 # with npm
 npm i vast-builder --save

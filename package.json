@@ -4,6 +4,9 @@
   "description": "An intuitive standard IAB vast generation API",
   "main": "lib/index.js",
   "thanks": "https://www.paypal.me/devilhunter/4",
+  "engines": {
+    "node": ">= 8"
+  },
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",

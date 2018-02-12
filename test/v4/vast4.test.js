@@ -26,7 +26,7 @@ describe('VAST4', () => {
       .attachLinear()
       .addDuration('00:00:00')
       .attachMediaFiles()
-      .attachMediaFile({
+      .attachMediaFile('mediafile url', {
         delivery: 'progressive',
         type: 'video/mp4',
         width: '800',
@@ -56,6 +56,8 @@ describe('VAST4', () => {
     const Creative = Creatives.attachCreative();
     assert.throws(() => vast.validate(), /Tag "UniversalAdId" not found below "Creative"/);
     const UniversalAdId = Creative.attachUniversalAdId();
+    assert.throws(() => vast.validate(), /No content found in "UniversalAdId"/);
+    UniversalAdId.content = 'ok';
     assert.throws(() => vast.validate(), /Required attribute "idRegistry" not found in "UniversalAdId" Tag/);
     UniversalAdId.attrs.idRegistry = 'ok';
     assert.throws(() => vast.validate(), /Required attribute "idValue" not found in "UniversalAdId" Tag/);
@@ -70,6 +72,8 @@ describe('VAST4', () => {
     const MediaFiles = Linear.attachMediaFiles();
     assert.throws(() => vast.validate(), /At least one child of "MediaFile" is needed below "MediaFiles"/);
     const MediaFile = MediaFiles.attachMediaFile();
+    assert.throws(() => vast.validate(), /No content found in "MediaFile"/);
+    MediaFile.content = 'ok';
     assert.throws(() => vast.validate(), /Required attribute "delivery" not found in "MediaFile" Tag/);
     MediaFile.attrs.delivery = 'ko';
     assert.throws(() => vast.validate(), /Required attribute "delivery" in "MediaFile" has incorrect value/);

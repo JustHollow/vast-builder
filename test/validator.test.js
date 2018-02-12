@@ -200,7 +200,7 @@ describe('VAST Validator', () => {
       });
       it('should throw on last level empty content tag', () => {
         lastTag.dangerouslyAddCustomTag('test4');
-        assert.throws(() => validateNext(root, validator))
+        assert.throws(() => validateNext(root, validator));
         assert.throws(() => validateNext(root, validator), /No content found in "test4"/)
       });
       it('should say required tag is valid', () => {
@@ -209,7 +209,7 @@ describe('VAST Validator', () => {
       });
       it('should follow until required', () => {
         lastTag.dangerouslyAddCustomTag('other', 'content');
-        assert.throws(() => validateNext(root, validator))
+        assert.throws(() => validateNext(root, validator));
         assert.throws(() => validateNext(root, validator), /Tag "test4" not found below "test3"/)
       });
     });

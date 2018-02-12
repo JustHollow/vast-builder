@@ -22,7 +22,7 @@ describe('VAST3', () => {
       .attachLinear()
       .addDuration('00:00:00')
       .attachMediaFiles()
-      .attachMediaFile({
+      .attachMediaFile('mediafile url', {
         delivery: 'progressive',
         type: 'video/mp4',
         width: '800',
@@ -60,6 +60,8 @@ describe('VAST3', () => {
     const MediaFiles = Linear.attachMediaFiles();
     assert.throws(() => vast.validate(), /At least one child of "MediaFile" is needed below "MediaFiles"/);
     const MediaFile = MediaFiles.attachMediaFile();
+    assert.throws(() => vast.validate(), /No content found in "MediaFile"/);
+    MediaFile.content = 'ok';
     assert.throws(() => vast.validate(), /Required attribute "delivery" not found in "MediaFile" Tag/);
     MediaFile.attrs.delivery = 'ko';
     assert.throws(() => vast.validate(), /Required attribute "delivery" in "MediaFile" has incorrect value/);

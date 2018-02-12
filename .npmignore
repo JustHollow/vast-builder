@@ -1,7 +1,10 @@
+.vscode/
 bin/
 build/doc/
 ressources/
 specs/
-tests/
+test/
 .gitignore
+.travis.yml
+try.js
 yarn.lock

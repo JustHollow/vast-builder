@@ -1,3 +1,5 @@
+ [![Build Status](https://travis-ci.org/DavidBabel/vast-builder.svg?branch=master)](https://travis-ci.org/DavidBabel/vast-builder)
+
 # vast-builder
 
 This library offer a complete support for IAB Video Ad Serving Template standard: VAST2, VAST3 and VAST4

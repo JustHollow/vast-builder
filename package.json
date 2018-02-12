@@ -14,7 +14,7 @@
     "build-v2": "node ./bin/build.js 2",
     "build-v3": "node ./bin/build.js 3",
     "build-v4": "node ./bin/build.js 4",
-    "clean-fixture": "rm -rf ./test/**/fixtures/*.xml",
+    "clean-fixtures": "rm -rf ./test/**/fixtures/*.xml",
     "clean": "rm -rf ./build"
   },
   "author": "David Babel",

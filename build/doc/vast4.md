@@ -26,6 +26,11 @@ dangerouslyAttachCustomTag(tagName: string, content: string, attributes: Object)
 ```
 
 ```js
+// Allow adding custom XML Tag and return his parent, usefull for <Extensions>
+dangerouslyAddCustomTag(tagName: string, content: string, attributes: Object): VastElement
+```
+
+```js
 // Get filtered attributes (only specs valids one will be returned)
 getAttrs(): Object
 ```
@@ -60,7 +65,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Attach a "VAST" child to current "apiv4". Return "VAST" to move on child level.
 attachVAST(attributes: {
-  version:("4.0")
+  version:("4.0") /* required */
 }): VAST
 ```
 
@@ -68,6 +73,8 @@ attachVAST(attributes: {
 
 <a id="VAST_4" name="VAST_4"></a>
 ## Class VAST _extends_ VastElement
+
+This child once is the only one allowed at this level below apiv4 in VAST4 spec
 
 child of [apiv4](#apiv4) ↗
 
@@ -92,9 +99,9 @@ attachError(content: string): Error
 ```js
 // Attach a "Ad" child to current "VAST". Return "Ad" to move on child level.
 attachAd(attributes: {
-  id: string, 
-  sequence: string, 
-  conditionalAd: string
+  id: string /* required */, 
+  sequence: string /* required */, 
+  conditionalAd: string /* required */
 }): Ad
 ```
 
@@ -108,6 +115,8 @@ child of [VAST](#VAST_4) ↗
 _no specific methods see [VastElement](#VastElement)_
 <a id="Ad_6" name="Ad_6"></a>
 ## Class Ad _extends_ VastElement
+
+At last one of this child and/or others are required below VAST in VAST4 spec
 
 child of [VAST](#VAST_4) ↗
 
@@ -125,9 +134,9 @@ attachInLine(): InLine
 ```js
 // Attach a "Wrapper" child to current "Ad". Return "Wrapper" to move on child level.
 attachWrapper(attributes: {
-  followAdditonalWrappers: string, 
-  allowMultipleAds: string, 
-  fallbackOnNoAd: string
+  followAdditonalWrappers: string /* required */, 
+  allowMultipleAds: string /* required */, 
+  fallbackOnNoAd: string /* required */
 }): Wrapper
 ```
 
@@ -135,6 +144,8 @@ attachWrapper(attributes: {
 
 <a id="InLine_7" name="InLine_7"></a>
 ## Class InLine _extends_ VastElement
+
+An uniq one of this child or others at same level are required below Ad in VAST4 spec
 
 child of [Ad](#Ad_6) ↗
 
@@ -145,7 +156,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "AdSystem" child to current "InLine". Return "InLine" to stay on same current level.
 addAdSystem(content: string, attributes: {
-  version: string
+  version: string /* required */
 }): InLine
 ```
 
@@ -154,7 +165,7 @@ addAdSystem(content: string, attributes: {
 ```js
 // Attach a "AdSystem" child to current "InLine". Return "AdSystem" to move on child level.
 attachAdSystem(content: string, attributes: {
-  version: string
+  version: string /* required */
 }): AdSystem
 ```
 
@@ -177,7 +188,7 @@ attachAdTitle(content: string): AdTitle
 ```js
 // Add a "Impression" child to current "InLine". Return "InLine" to stay on same current level.
 addImpression(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): InLine
 ```
 
@@ -186,7 +197,7 @@ addImpression(content: string, attributes: {
 ```js
 // Attach a "Impression" child to current "InLine". Return "Impression" to move on child level.
 attachImpression(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): Impression
 ```
 
@@ -195,7 +206,7 @@ attachImpression(content: string, attributes: {
 ```js
 // Add a "Category" child to current "InLine". Return "InLine" to stay on same current level.
 addCategory(content: string, attributes: {
-  authority: string
+  authority: string /* required */
 }): InLine
 ```
 
@@ -204,7 +215,7 @@ addCategory(content: string, attributes: {
 ```js
 // Attach a "Category" child to current "InLine". Return "Category" to move on child level.
 attachCategory(content: string, attributes: {
-  authority: string
+  authority: string /* required */
 }): Category
 ```
 
@@ -241,8 +252,8 @@ attachAdvertiser(content: string): Advertiser
 ```js
 // Add a "Pricing" child to current "InLine". Return "InLine" to stay on same current level.
 addPricing(content: string, attributes: {
-  currency: string, 
-  model:("CPM"|"CPC"|"CPE"|"CPV")
+  currency: string /* required */, 
+  model:("CPM"|"CPC"|"CPE"|"CPV") /* required */
 }): InLine
 ```
 
@@ -251,8 +262,8 @@ addPricing(content: string, attributes: {
 ```js
 // Attach a "Pricing" child to current "InLine". Return "Pricing" to move on child level.
 attachPricing(content: string, attributes: {
-  currency: string, 
-  model:("CPM"|"CPC"|"CPE"|"CPV")
+  currency: string /* required */, 
+  model:("CPM"|"CPC"|"CPE"|"CPV") /* required */
 }): Pricing
 ```
 
@@ -261,7 +272,7 @@ attachPricing(content: string, attributes: {
 ```js
 // Add a "Survey" child to current "InLine". Return "InLine" to stay on same current level.
 addSurvey(content: string, attributes: {
-  type: string
+  type: string /* required */
 }): InLine
 ```
 
@@ -270,7 +281,7 @@ addSurvey(content: string, attributes: {
 ```js
 // Attach a "Survey" child to current "InLine". Return "Survey" to move on child level.
 attachSurvey(content: string, attributes: {
-  type: string
+  type: string /* required */
 }): Survey
 ```
 
@@ -293,7 +304,7 @@ attachError(content: string): Error
 ```js
 // Attach a "ViewableImpression" child to current "InLine". Return "ViewableImpression" to move on child level.
 attachViewableImpression(attributes: {
-  id: string
+  id: string /* required */
 }): ViewableImpression
 ```
 
@@ -323,17 +334,23 @@ attachCreatives(): Creatives
 <a id="AdSystem_8" name="AdSystem_8"></a>
 ## Class AdSystem _extends_ VastElement
 
+This child is required below InLine in VAST4 spec
+
 child of [InLine](#InLine_7) ↗
 
 _no specific methods see [VastElement](#VastElement)_
 <a id="AdTitle_9" name="AdTitle_9"></a>
 ## Class AdTitle _extends_ VastElement
 
+This child is required below InLine in VAST4 spec
+
 child of [InLine](#InLine_7) ↗
 
 _no specific methods see [VastElement](#VastElement)_
 <a id="Impression_10" name="Impression_10"></a>
 ## Class Impression _extends_ VastElement
+
+At last one of this child and/or others are required below InLine in VAST4 spec
 
 child of [InLine](#InLine_7) ↗
 
@@ -455,7 +472,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Attach a "Verification" child to current "AdVerifications". Return "Verification" to move on child level.
 attachVerification(attributes: {
-  vendor: string
+  vendor: string /* required */
 }): Verification
 ```
 
@@ -473,7 +490,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "JavaScriptResource" child to current "Verification". Return "Verification" to stay on same current level.
 addJavaScriptResource(content: string, attributes: {
-  apiFramework: string
+  apiFramework: string /* required */
 }): Verification
 ```
 
@@ -482,7 +499,7 @@ addJavaScriptResource(content: string, attributes: {
 ```js
 // Attach a "JavaScriptResource" child to current "Verification". Return "JavaScriptResource" to move on child level.
 attachJavaScriptResource(content: string, attributes: {
-  apiFramework: string
+  apiFramework: string /* required */
 }): JavaScriptResource
 ```
 
@@ -491,7 +508,7 @@ attachJavaScriptResource(content: string, attributes: {
 ```js
 // Add a "FlashResource" child to current "Verification". Return "Verification" to stay on same current level.
 addFlashResource(content: string, attributes: {
-  apiFramework: string
+  apiFramework: string /* required */
 }): Verification
 ```
 
@@ -500,7 +517,7 @@ addFlashResource(content: string, attributes: {
 ```js
 // Attach a "FlashResource" child to current "Verification". Return "FlashResource" to move on child level.
 attachFlashResource(content: string, attributes: {
-  apiFramework: string
+  apiFramework: string /* required */
 }): FlashResource
 ```
 
@@ -509,7 +526,7 @@ attachFlashResource(content: string, attributes: {
 ```js
 // Add a "ViewableImpression" child to current "Verification". Return "Verification" to stay on same current level.
 addViewableImpression(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): Verification
 ```
 
@@ -518,7 +535,7 @@ addViewableImpression(content: string, attributes: {
 ```js
 // Attach a "ViewableImpression" child to current "Verification". Return "ViewableImpression" to move on child level.
 attachViewableImpression(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): ViewableImpression
 ```
 
@@ -554,7 +571,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "Extension" child to current "Extensions". Return "Extensions" to stay on same current level.
 addExtension(content: string, attributes: {
-  type: string
+  type: string /* required */
 }): Extensions
 ```
 
@@ -563,7 +580,7 @@ addExtension(content: string, attributes: {
 ```js
 // Attach a "Extension" child to current "Extensions". Return "Extension" to move on child level.
 attachExtension(content: string, attributes: {
-  type: string
+  type: string /* required */
 }): Extension
 ```
 
@@ -572,11 +589,15 @@ attachExtension(content: string, attributes: {
 <a id="Extension_27" name="Extension_27"></a>
 ## Class Extension _extends_ VastElement
 
+This child is required below Extensions in VAST4 spec
+
 child of [Extensions](#Extensions_26) ↗
 
 _no specific methods see [VastElement](#VastElement)_
 <a id="Creatives_28" name="Creatives_28"></a>
 ## Class Creatives _extends_ VastElement
+
+This child is required below InLine in VAST4 spec
 
 child of [InLine](#InLine_7) ↗
 
@@ -587,10 +608,10 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Attach a "Creative" child to current "Creatives". Return "Creative" to move on child level.
 attachCreative(attributes: {
-  id: string, 
-  sequence: string, 
-  adId: string, 
-  apiFramework: string
+  id: string /* required */, 
+  sequence: string /* required */, 
+  adId: string /* required */, 
+  apiFramework: string /* required */
 }): Creative
 ```
 
@@ -598,6 +619,8 @@ attachCreative(attributes: {
 
 <a id="Creative_29" name="Creative_29"></a>
 ## Class Creative _extends_ VastElement
+
+At last one of this child and/or others are required below Creatives in VAST4 spec
 
 child of [Creatives](#Creatives_28) ↗
 
@@ -608,8 +631,8 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "UniversalAdId" child to current "Creative". Return "Creative" to stay on same current level.
 addUniversalAdId(content: string, attributes: {
-  idRegistry: string, 
-  idValue: string
+  idRegistry: string /* required */, 
+  idValue: string /* required */
 }): Creative
 ```
 
@@ -618,8 +641,8 @@ addUniversalAdId(content: string, attributes: {
 ```js
 // Attach a "UniversalAdId" child to current "Creative". Return "UniversalAdId" to move on child level.
 attachUniversalAdId(content: string, attributes: {
-  idRegistry: string, 
-  idValue: string
+  idRegistry: string /* required */, 
+  idValue: string /* required */
 }): UniversalAdId
 ```
 
@@ -635,7 +658,7 @@ attachCreativeExtensions(): CreativeExtensions
 ```js
 // Attach a "Linear" child to current "Creative". Return "Linear" to move on child level.
 attachLinear(attributes: {
-  skipoffset: string
+  skipoffset: string /* required */
 }): Linear
 ```
 
@@ -651,7 +674,7 @@ attachNonLinearAds(): NonLinearAds
 ```js
 // Attach a "CompanionAds" child to current "Creative". Return "CompanionAds" to move on child level.
 attachCompanionAds(attributes: {
-  required:("all"|"any"|"none")
+  required:("all"|"any"|"none") /* required */
 }): CompanionAds
 ```
 
@@ -659,6 +682,8 @@ attachCompanionAds(attributes: {
 
 <a id="UniversalAdId_30" name="UniversalAdId_30"></a>
 ## Class UniversalAdId _extends_ VastElement
+
+This child is required below Creative in VAST4 spec
 
 child of [Creative](#Creative_29) ↗
 
@@ -675,7 +700,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "CreativeExtension" child to current "CreativeExtensions". Return "CreativeExtensions" to stay on same current level.
 addCreativeExtension(content: string, attributes: {
-  type: string
+  type: string /* required */
 }): CreativeExtensions
 ```
 
@@ -684,7 +709,7 @@ addCreativeExtension(content: string, attributes: {
 ```js
 // Attach a "CreativeExtension" child to current "CreativeExtensions". Return "CreativeExtension" to move on child level.
 attachCreativeExtension(content: string, attributes: {
-  type: string
+  type: string /* required */
 }): CreativeExtension
 ```
 
@@ -698,6 +723,8 @@ child of [CreativeExtensions](#CreativeExtensions_31) ↗
 _no specific methods see [VastElement](#VastElement)_
 <a id="Linear_33" name="Linear_33"></a>
 ## Class Linear _extends_ VastElement
+
+An uniq one of this child or others at same level are required below Creative in VAST4 spec
 
 child of [Creative](#Creative_29) ↗
 
@@ -722,7 +749,7 @@ attachDuration(content: string): Duration
 ```js
 // Add a "AdParameters" child to current "Linear". Return "Linear" to stay on same current level.
 addAdParameters(content: string, attributes: {
-  xmlEncoded: string
+  xmlEncoded: string /* required */
 }): Linear
 ```
 
@@ -731,7 +758,7 @@ addAdParameters(content: string, attributes: {
 ```js
 // Attach a "AdParameters" child to current "Linear". Return "AdParameters" to move on child level.
 attachAdParameters(content: string, attributes: {
-  xmlEncoded: string
+  xmlEncoded: string /* required */
 }): AdParameters
 ```
 
@@ -768,6 +795,8 @@ attachIcons(): Icons
 <a id="Duration_34" name="Duration_34"></a>
 ## Class Duration _extends_ VastElement
 
+This child is required below Linear in VAST4 spec
+
 child of [Linear](#Linear_33) ↗
 
 _no specific methods see [VastElement](#VastElement)_
@@ -779,6 +808,8 @@ child of [Linear](#Linear_33) ↗
 _no specific methods see [VastElement](#VastElement)_
 <a id="MediaFiles_36" name="MediaFiles_36"></a>
 ## Class MediaFiles _extends_ VastElement
+
+This child is required below Linear in VAST4 spec
 
 child of [Linear](#Linear_33) ↗
 
@@ -803,18 +834,18 @@ attachMezzanine(content: string): Mezzanine
 ```js
 // Add a "MediaFile" child to current "MediaFiles". Return "MediaFiles" to stay on same current level.
 addMediaFile(content: string, attributes: {
-  id: string, 
-  delivery:("progressive"|"streaming"), 
-  type: string, 
-  bitrate: string, 
-  minBitrate: string, 
-  maxBitrate: string, 
-  width: string, 
-  height: string, 
-  scalable: string, 
-  mantainAspectRatio: string, 
-  codec: string, 
-  apiFramework: string
+  id: string /* required */, 
+  delivery:("progressive"|"streaming") /* required */, 
+  type: string /* required */, 
+  bitrate: string /* required */, 
+  minBitrate: string /* required */, 
+  maxBitrate: string /* required */, 
+  width: string /* required */, 
+  height: string /* required */, 
+  scalable: string /* required */, 
+  mantainAspectRatio: string /* required */, 
+  codec: string /* required */, 
+  apiFramework: string /* required */
 }): MediaFiles
 ```
 
@@ -823,18 +854,18 @@ addMediaFile(content: string, attributes: {
 ```js
 // Attach a "MediaFile" child to current "MediaFiles". Return "MediaFile" to move on child level.
 attachMediaFile(content: string, attributes: {
-  id: string, 
-  delivery:("progressive"|"streaming"), 
-  type: string, 
-  bitrate: string, 
-  minBitrate: string, 
-  maxBitrate: string, 
-  width: string, 
-  height: string, 
-  scalable: string, 
-  mantainAspectRatio: string, 
-  codec: string, 
-  apiFramework: string
+  id: string /* required */, 
+  delivery:("progressive"|"streaming") /* required */, 
+  type: string /* required */, 
+  bitrate: string /* required */, 
+  minBitrate: string /* required */, 
+  maxBitrate: string /* required */, 
+  width: string /* required */, 
+  height: string /* required */, 
+  scalable: string /* required */, 
+  mantainAspectRatio: string /* required */, 
+  codec: string /* required */, 
+  apiFramework: string /* required */
 }): MediaFile
 ```
 
@@ -863,6 +894,8 @@ _no specific methods see [VastElement](#VastElement)_
 <a id="MediaFile_38" name="MediaFile_38"></a>
 ## Class MediaFile _extends_ VastElement
 
+At last one of this child and/or others are required below MediaFiles in VAST4 spec
+
 child of [MediaFiles](#MediaFiles_36) ↗
 
 _no specific methods see [VastElement](#VastElement)_
@@ -884,7 +917,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "ClickThrough" child to current "VideoClicks". Return "VideoClicks" to stay on same current level.
 addClickThrough(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): VideoClicks
 ```
 
@@ -893,7 +926,7 @@ addClickThrough(content: string, attributes: {
 ```js
 // Attach a "ClickThrough" child to current "VideoClicks". Return "ClickThrough" to move on child level.
 attachClickThrough(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): ClickThrough
 ```
 
@@ -902,7 +935,7 @@ attachClickThrough(content: string, attributes: {
 ```js
 // Add a "ClickTracking" child to current "VideoClicks". Return "VideoClicks" to stay on same current level.
 addClickTracking(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): VideoClicks
 ```
 
@@ -911,7 +944,7 @@ addClickTracking(content: string, attributes: {
 ```js
 // Attach a "ClickTracking" child to current "VideoClicks". Return "ClickTracking" to move on child level.
 attachClickTracking(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): ClickTracking
 ```
 
@@ -920,7 +953,7 @@ attachClickTracking(content: string, attributes: {
 ```js
 // Add a "CustomClick" child to current "VideoClicks". Return "VideoClicks" to stay on same current level.
 addCustomClick(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): VideoClicks
 ```
 
@@ -929,7 +962,7 @@ addCustomClick(content: string, attributes: {
 ```js
 // Attach a "CustomClick" child to current "VideoClicks". Return "CustomClick" to move on child level.
 attachCustomClick(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): CustomClick
 ```
 
@@ -965,8 +998,8 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "Tracking" child to current "TrackingEvents". Return "TrackingEvents" to stay on same current level.
 addTracking(content: string, attributes: {
-  offset: string, 
-  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"acceptInvitationLinear"|"timeSpentViewing"|"progress")
+  offset: string /* required */, 
+  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"acceptInvitationLinear"|"timeSpentViewing"|"progress") /* required */
 }): TrackingEvents
 ```
 
@@ -975,8 +1008,8 @@ addTracking(content: string, attributes: {
 ```js
 // Attach a "Tracking" child to current "TrackingEvents". Return "Tracking" to move on child level.
 attachTracking(content: string, attributes: {
-  offset: string, 
-  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"acceptInvitationLinear"|"timeSpentViewing"|"progress")
+  offset: string /* required */, 
+  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"acceptInvitationLinear"|"timeSpentViewing"|"progress") /* required */
 }): Tracking
 ```
 
@@ -1000,15 +1033,15 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Attach a "Icon" child to current "Icons". Return "Icon" to move on child level.
 attachIcon(attributes: {
-  program: string, 
-  width: string, 
-  height: string, 
-  xPosition: string, 
-  yPosition: string, 
-  duration: string, 
-  offset: string, 
-  apiFramework: string, 
-  pxratio: string
+  program: string /* required */, 
+  width: string /* required */, 
+  height: string /* required */, 
+  xPosition: string /* required */, 
+  yPosition: string /* required */, 
+  duration: string /* required */, 
+  offset: string /* required */, 
+  apiFramework: string /* required */, 
+  pxratio: string /* required */
 }): Icon
 ```
 
@@ -1016,6 +1049,8 @@ attachIcon(attributes: {
 
 <a id="Icon_47" name="Icon_47"></a>
 ## Class Icon _extends_ VastElement
+
+At last one of this child and/or others are required below Icons in VAST4 spec
 
 child of [Icons](#Icons_46) ↗
 
@@ -1026,7 +1061,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "StaticResource" child to current "Icon". Return "Icon" to stay on same current level.
 addStaticResource(content: string, attributes: {
-  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
+  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash") /* required */
 }): Icon
 ```
 
@@ -1035,7 +1070,7 @@ addStaticResource(content: string, attributes: {
 ```js
 // Attach a "StaticResource" child to current "Icon". Return "StaticResource" to move on child level.
 attachStaticResource(content: string, attributes: {
-  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
+  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash") /* required */
 }): StaticResource
 ```
 
@@ -1093,17 +1128,23 @@ attachIconViewTracking(content: string): IconViewTracking
 <a id="StaticResource_48" name="StaticResource_48"></a>
 ## Class StaticResource _extends_ VastElement
 
+At last one of this child and/or others are required below Icon in VAST4 spec
+
 child of [Icon](#Icon_47) ↗
 
 _no specific methods see [VastElement](#VastElement)_
 <a id="IFrameResource_49" name="IFrameResource_49"></a>
 ## Class IFrameResource _extends_ VastElement
 
+At last one of this child and/or others are required below Icon in VAST4 spec
+
 child of [Icon](#Icon_47) ↗
 
 _no specific methods see [VastElement](#VastElement)_
 <a id="HTMLResource_50" name="HTMLResource_50"></a>
 ## Class HTMLResource _extends_ VastElement
+
+At last one of this child and/or others are required below Icon in VAST4 spec
 
 child of [Icon](#Icon_47) ↗
 
@@ -1134,7 +1175,7 @@ attachIconClickThrough(content: string): IconClickThrough
 ```js
 // Add a "IconClickTracking" child to current "IconClicks". Return "IconClicks" to stay on same current level.
 addIconClickTracking(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): IconClicks
 ```
 
@@ -1143,7 +1184,7 @@ addIconClickTracking(content: string, attributes: {
 ```js
 // Attach a "IconClickTracking" child to current "IconClicks". Return "IconClickTracking" to move on child level.
 attachIconClickTracking(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): IconClickTracking
 ```
 
@@ -1169,6 +1210,8 @@ child of [Icon](#Icon_47) ↗
 _no specific methods see [VastElement](#VastElement)_
 <a id="NonLinearAds_55" name="NonLinearAds_55"></a>
 ## Class NonLinearAds _extends_ VastElement
+
+An uniq one of this child or others at same level are required below Creative in VAST4 spec
 
 child of [Creative](#Creative_29) ↗
 
@@ -1251,7 +1294,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "Tracking" child to current "TrackingEvents". Return "TrackingEvents" to stay on same current level.
 addTracking(content: string, attributes: {
-  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"creativeView"|"acceptInvitation"|"adExpand"|"adCollapse"|"minimize"|"close"|"overlayViewDuration")
+  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"creativeView"|"acceptInvitation"|"adExpand"|"adCollapse"|"minimize"|"close"|"overlayViewDuration") /* required */
 }): TrackingEvents
 ```
 
@@ -1260,7 +1303,7 @@ addTracking(content: string, attributes: {
 ```js
 // Attach a "Tracking" child to current "TrackingEvents". Return "Tracking" to move on child level.
 attachTracking(content: string, attributes: {
-  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"creativeView"|"acceptInvitation"|"adExpand"|"adCollapse"|"minimize"|"close"|"overlayViewDuration")
+  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"creativeView"|"acceptInvitation"|"adExpand"|"adCollapse"|"minimize"|"close"|"overlayViewDuration") /* required */
 }): Tracking
 ```
 
@@ -1275,6 +1318,8 @@ _no specific methods see [VastElement](#VastElement)_
 <a id="CompanionAds_61" name="CompanionAds_61"></a>
 ## Class CompanionAds _extends_ VastElement
 
+An uniq one of this child or others at same level are required below Creative in VAST4 spec
+
 child of [Creative](#Creative_29) ↗
 
 ### methods
@@ -1284,16 +1329,16 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Attach a "Companion" child to current "CompanionAds". Return "Companion" to move on child level.
 attachCompanion(attributes: {
-  id: string, 
-  width: string, 
-  height: string, 
-  assetWidth: string, 
-  assetHeight: string, 
-  expandedWidth: string, 
-  expandedHeight: string, 
-  apiFramework: string, 
-  adSlotID: string, 
-  pxratio: string
+  id: string /* required */, 
+  width: string /* required */, 
+  height: string /* required */, 
+  assetWidth: string /* required */, 
+  assetHeight: string /* required */, 
+  expandedWidth: string /* required */, 
+  expandedHeight: string /* required */, 
+  apiFramework: string /* required */, 
+  adSlotID: string /* required */, 
+  pxratio: string /* required */
 }): Companion
 ```
 
@@ -1311,7 +1356,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "StaticResource" child to current "Companion". Return "Companion" to stay on same current level.
 addStaticResource(content: string, attributes: {
-  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
+  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash") /* required */
 }): Companion
 ```
 
@@ -1320,7 +1365,7 @@ addStaticResource(content: string, attributes: {
 ```js
 // Attach a "StaticResource" child to current "Companion". Return "StaticResource" to move on child level.
 attachStaticResource(content: string, attributes: {
-  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
+  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash") /* required */
 }): StaticResource
 ```
 
@@ -1357,7 +1402,7 @@ attachHTMLResource(content: string): HTMLResource
 ```js
 // Add a "AdParameters" child to current "Companion". Return "Companion" to stay on same current level.
 addAdParameters(content: string, attributes: {
-  xmlEncoded: string
+  xmlEncoded: string /* required */
 }): Companion
 ```
 
@@ -1366,7 +1411,7 @@ addAdParameters(content: string, attributes: {
 ```js
 // Attach a "AdParameters" child to current "Companion". Return "AdParameters" to move on child level.
 attachAdParameters(content: string, attributes: {
-  xmlEncoded: string
+  xmlEncoded: string /* required */
 }): AdParameters
 ```
 
@@ -1403,7 +1448,7 @@ attachCompanionClickThrough(content: string): CompanionClickThrough
 ```js
 // Add a "CompanionClickTracking" child to current "Companion". Return "Companion" to stay on same current level.
 addCompanionClickTracking(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): Companion
 ```
 
@@ -1412,7 +1457,7 @@ addCompanionClickTracking(content: string, attributes: {
 ```js
 // Attach a "CompanionClickTracking" child to current "Companion". Return "CompanionClickTracking" to move on child level.
 attachCompanionClickTracking(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): CompanionClickTracking
 ```
 
@@ -1428,17 +1473,23 @@ attachTrackingEvents(): TrackingEvents
 <a id="StaticResource_63" name="StaticResource_63"></a>
 ## Class StaticResource _extends_ VastElement
 
+At last one of this child and/or others are required below Companion in VAST4 spec
+
 child of [Companion](#Companion_62) ↗
 
 _no specific methods see [VastElement](#VastElement)_
 <a id="IFrameResource_64" name="IFrameResource_64"></a>
 ## Class IFrameResource _extends_ VastElement
 
+At last one of this child and/or others are required below Companion in VAST4 spec
+
 child of [Companion](#Companion_62) ↗
 
 _no specific methods see [VastElement](#VastElement)_
 <a id="HTMLResource_65" name="HTMLResource_65"></a>
 ## Class HTMLResource _extends_ VastElement
+
+At last one of this child and/or others are required below Companion in VAST4 spec
 
 child of [Companion](#Companion_62) ↗
 
@@ -1479,7 +1530,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "Tracking" child to current "TrackingEvents". Return "TrackingEvents" to stay on same current level.
 addTracking(content: string, attributes: {
-  event:("creativeView")
+  event:("creativeView") /* required */
 }): TrackingEvents
 ```
 
@@ -1488,7 +1539,7 @@ addTracking(content: string, attributes: {
 ```js
 // Attach a "Tracking" child to current "TrackingEvents". Return "Tracking" to move on child level.
 attachTracking(content: string, attributes: {
-  event:("creativeView")
+  event:("creativeView") /* required */
 }): Tracking
 ```
 
@@ -1503,6 +1554,8 @@ _no specific methods see [VastElement](#VastElement)_
 <a id="Wrapper_72" name="Wrapper_72"></a>
 ## Class Wrapper _extends_ VastElement
 
+An uniq one of this child or others at same level are required below Ad in VAST4 spec
+
 child of [Ad](#Ad_6) ↗
 
 ### methods
@@ -1512,7 +1565,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "Impression" child to current "Wrapper". Return "Wrapper" to stay on same current level.
 addImpression(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): Wrapper
 ```
 
@@ -1521,7 +1574,7 @@ addImpression(content: string, attributes: {
 ```js
 // Attach a "Impression" child to current "Wrapper". Return "Impression" to move on child level.
 attachImpression(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): Impression
 ```
 
@@ -1544,7 +1597,7 @@ attachVASTAdTagURI(content: string): VASTAdTagURI
 ```js
 // Add a "AdSystem" child to current "Wrapper". Return "Wrapper" to stay on same current level.
 addAdSystem(content: string, attributes: {
-  version: string
+  version: string /* required */
 }): Wrapper
 ```
 
@@ -1553,7 +1606,7 @@ addAdSystem(content: string, attributes: {
 ```js
 // Attach a "AdSystem" child to current "Wrapper". Return "AdSystem" to move on child level.
 attachAdSystem(content: string, attributes: {
-  version: string
+  version: string /* required */
 }): AdSystem
 ```
 
@@ -1562,8 +1615,8 @@ attachAdSystem(content: string, attributes: {
 ```js
 // Add a "Pricing" child to current "Wrapper". Return "Wrapper" to stay on same current level.
 addPricing(content: string, attributes: {
-  currency: string, 
-  model:("CPM"|"CPC"|"CPE"|"CPV")
+  currency: string /* required */, 
+  model:("CPM"|"CPC"|"CPE"|"CPV") /* required */
 }): Wrapper
 ```
 
@@ -1572,8 +1625,8 @@ addPricing(content: string, attributes: {
 ```js
 // Attach a "Pricing" child to current "Wrapper". Return "Pricing" to move on child level.
 attachPricing(content: string, attributes: {
-  currency: string, 
-  model:("CPM"|"CPC"|"CPE"|"CPV")
+  currency: string /* required */, 
+  model:("CPM"|"CPC"|"CPE"|"CPV") /* required */
 }): Pricing
 ```
 
@@ -1596,7 +1649,7 @@ attachError(content: string): Error
 ```js
 // Attach a "ViewableImpression" child to current "Wrapper". Return "ViewableImpression" to move on child level.
 attachViewableImpression(attributes: {
-  id: string
+  id: string /* required */
 }): ViewableImpression
 ```
 
@@ -1626,17 +1679,23 @@ attachCreatives(): Creatives
 <a id="Impression_73" name="Impression_73"></a>
 ## Class Impression _extends_ VastElement
 
+At last one of this child and/or others are required below Wrapper in VAST4 spec
+
 child of [Wrapper](#Wrapper_72) ↗
 
 _no specific methods see [VastElement](#VastElement)_
 <a id="VASTAdTagURI_74" name="VASTAdTagURI_74"></a>
 ## Class VASTAdTagURI _extends_ VastElement
 
+This child is required below Wrapper in VAST4 spec
+
 child of [Wrapper](#Wrapper_72) ↗
 
 _no specific methods see [VastElement](#VastElement)_
 <a id="AdSystem_75" name="AdSystem_75"></a>
 ## Class AdSystem _extends_ VastElement
+
+This child is required below Wrapper in VAST4 spec
 
 child of [Wrapper](#Wrapper_72) ↗
 
@@ -1734,7 +1793,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Attach a "Verification" child to current "AdVerifications". Return "Verification" to move on child level.
 attachVerification(attributes: {
-  vendor: string
+  vendor: string /* required */
 }): Verification
 ```
 
@@ -1752,7 +1811,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "ViewableImpression" child to current "Verification". Return "Verification" to stay on same current level.
 addViewableImpression(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): Verification
 ```
 
@@ -1761,7 +1820,7 @@ addViewableImpression(content: string, attributes: {
 ```js
 // Attach a "ViewableImpression" child to current "Verification". Return "ViewableImpression" to move on child level.
 attachViewableImpression(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): ViewableImpression
 ```
 
@@ -1785,7 +1844,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "Extension" child to current "Extensions". Return "Extensions" to stay on same current level.
 addExtension(content: string, attributes: {
-  type: string
+  type: string /* required */
 }): Extensions
 ```
 
@@ -1794,7 +1853,7 @@ addExtension(content: string, attributes: {
 ```js
 // Attach a "Extension" child to current "Extensions". Return "Extension" to move on child level.
 attachExtension(content: string, attributes: {
-  type: string
+  type: string /* required */
 }): Extension
 ```
 
@@ -1818,9 +1877,9 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Attach a "Creative" child to current "Creatives". Return "Creative" to move on child level.
 attachCreative(attributes: {
-  id: string, 
-  sequence: string, 
-  adId: string
+  id: string /* required */, 
+  sequence: string /* required */, 
+  adId: string /* required */
 }): Creative
 ```
 
@@ -1852,7 +1911,7 @@ attachNonLinearAds(): NonLinearAds
 ```js
 // Attach a "CompanionAds" child to current "Creative". Return "CompanionAds" to move on child level.
 attachCompanionAds(attributes: {
-  required:("all"|"any"|"none")
+  required:("all"|"any"|"none") /* required */
 }): CompanionAds
 ```
 
@@ -1860,6 +1919,8 @@ attachCompanionAds(attributes: {
 
 <a id="Linear_89" name="Linear_89"></a>
 ## Class Linear _extends_ VastElement
+
+An uniq one of this child or others at same level are required below Creative in VAST4 spec
 
 child of [Creative](#Creative_88) ↗
 
@@ -1914,8 +1975,8 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "Tracking" child to current "TrackingEvents". Return "TrackingEvents" to stay on same current level.
 addTracking(content: string, attributes: {
-  offset: string, 
-  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"acceptInvitationLinear"|"timeSpentViewing"|"progress")
+  offset: string /* required */, 
+  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"acceptInvitationLinear"|"timeSpentViewing"|"progress") /* required */
 }): TrackingEvents
 ```
 
@@ -1924,8 +1985,8 @@ addTracking(content: string, attributes: {
 ```js
 // Attach a "Tracking" child to current "TrackingEvents". Return "Tracking" to move on child level.
 attachTracking(content: string, attributes: {
-  offset: string, 
-  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"acceptInvitationLinear"|"timeSpentViewing"|"progress")
+  offset: string /* required */, 
+  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"start"|"firstQuartile"|"midpoint"|"thirdQuartile"|"complete"|"acceptInvitationLinear"|"timeSpentViewing"|"progress") /* required */
 }): Tracking
 ```
 
@@ -1949,7 +2010,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "ClickTracking" child to current "VideoClicks". Return "VideoClicks" to stay on same current level.
 addClickTracking(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): VideoClicks
 ```
 
@@ -1958,7 +2019,7 @@ addClickTracking(content: string, attributes: {
 ```js
 // Attach a "ClickTracking" child to current "VideoClicks". Return "ClickTracking" to move on child level.
 attachClickTracking(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): ClickTracking
 ```
 
@@ -1967,7 +2028,7 @@ attachClickTracking(content: string, attributes: {
 ```js
 // Add a "CustomClick" child to current "VideoClicks". Return "VideoClicks" to stay on same current level.
 addCustomClick(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): VideoClicks
 ```
 
@@ -1976,7 +2037,7 @@ addCustomClick(content: string, attributes: {
 ```js
 // Attach a "CustomClick" child to current "VideoClicks". Return "CustomClick" to move on child level.
 attachCustomClick(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): CustomClick
 ```
 
@@ -2006,15 +2067,15 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Attach a "Icon" child to current "Icons". Return "Icon" to move on child level.
 attachIcon(attributes: {
-  program: string, 
-  width: string, 
-  height: string, 
-  xPosition: string, 
-  yPosition: string, 
-  duration: string, 
-  offset: string, 
-  apiFramework: string, 
-  pxratio: string
+  program: string /* required */, 
+  width: string /* required */, 
+  height: string /* required */, 
+  xPosition: string /* required */, 
+  yPosition: string /* required */, 
+  duration: string /* required */, 
+  offset: string /* required */, 
+  apiFramework: string /* required */, 
+  pxratio: string /* required */
 }): Icon
 ```
 
@@ -2022,6 +2083,8 @@ attachIcon(attributes: {
 
 <a id="Icon_96" name="Icon_96"></a>
 ## Class Icon _extends_ VastElement
+
+At last one of this child and/or others are required below Icons in VAST4 spec
 
 child of [Icons](#Icons_95) ↗
 
@@ -2032,7 +2095,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "StaticResource" child to current "Icon". Return "Icon" to stay on same current level.
 addStaticResource(content: string, attributes: {
-  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
+  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash") /* required */
 }): Icon
 ```
 
@@ -2041,7 +2104,7 @@ addStaticResource(content: string, attributes: {
 ```js
 // Attach a "StaticResource" child to current "Icon". Return "StaticResource" to move on child level.
 attachStaticResource(content: string, attributes: {
-  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
+  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash") /* required */
 }): StaticResource
 ```
 
@@ -2178,6 +2241,8 @@ _no specific methods see [VastElement](#VastElement)_
 <a id="NonLinearAds_105" name="NonLinearAds_105"></a>
 ## Class NonLinearAds _extends_ VastElement
 
+An uniq one of this child or others at same level are required below Creative in VAST4 spec
+
 child of [Creative](#Creative_88) ↗
 
 ### methods
@@ -2259,7 +2324,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "Tracking" child to current "TrackingEvents". Return "TrackingEvents" to stay on same current level.
 addTracking(content: string, attributes: {
-  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"creativeView"|"acceptInvitation"|"adExpand"|"adCollapse"|"minimize"|"close"|"overlayViewDuration")
+  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"creativeView"|"acceptInvitation"|"adExpand"|"adCollapse"|"minimize"|"close"|"overlayViewDuration") /* required */
 }): TrackingEvents
 ```
 
@@ -2268,7 +2333,7 @@ addTracking(content: string, attributes: {
 ```js
 // Attach a "Tracking" child to current "TrackingEvents". Return "Tracking" to move on child level.
 attachTracking(content: string, attributes: {
-  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"creativeView"|"acceptInvitation"|"adExpand"|"adCollapse"|"minimize"|"close"|"overlayViewDuration")
+  event:("mute"|"unmute"|"pause"|"resume"|"rewind"|"skip"|"playerExpand"|"playerCollapse"|"otherAdInteraction"|"creativeView"|"acceptInvitation"|"adExpand"|"adCollapse"|"minimize"|"close"|"overlayViewDuration") /* required */
 }): Tracking
 ```
 
@@ -2283,6 +2348,8 @@ _no specific methods see [VastElement](#VastElement)_
 <a id="CompanionAds_111" name="CompanionAds_111"></a>
 ## Class CompanionAds _extends_ VastElement
 
+An uniq one of this child or others at same level are required below Creative in VAST4 spec
+
 child of [Creative](#Creative_88) ↗
 
 ### methods
@@ -2292,20 +2359,20 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Attach a "Companion" child to current "CompanionAds". Return "Companion" to move on child level.
 attachCompanion(attributes: {
-  id: string, 
-  width: string, 
-  height: string, 
-  assetWidth: string, 
-  assetHeight: string, 
-  expandedWidth: string, 
-  expandedHeight: string, 
-  apiFramework: string, 
-  adSlotID: string, 
-  logoTile: string, 
-  logoTitle: string, 
-  logoArtist: string, 
-  logoURL: string, 
-  pxratio: string
+  id: string /* required */, 
+  width: string /* required */, 
+  height: string /* required */, 
+  assetWidth: string /* required */, 
+  assetHeight: string /* required */, 
+  expandedWidth: string /* required */, 
+  expandedHeight: string /* required */, 
+  apiFramework: string /* required */, 
+  adSlotID: string /* required */, 
+  logoTile: string /* required */, 
+  logoTitle: string /* required */, 
+  logoArtist: string /* required */, 
+  logoURL: string /* required */, 
+  pxratio: string /* required */
 }): Companion
 ```
 
@@ -2323,7 +2390,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "StaticResource" child to current "Companion". Return "Companion" to stay on same current level.
 addStaticResource(content: string, attributes: {
-  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
+  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash") /* required */
 }): Companion
 ```
 
@@ -2332,7 +2399,7 @@ addStaticResource(content: string, attributes: {
 ```js
 // Attach a "StaticResource" child to current "Companion". Return "StaticResource" to move on child level.
 attachStaticResource(content: string, attributes: {
-  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash")
+  creativeType:("image/gif"|"image/jpeg"|"image/jpg"|"image/png"|"application/x-javascript"|"application/x-shockwave-flash") /* required */
 }): StaticResource
 ```
 
@@ -2369,7 +2436,7 @@ attachHTMLResource(content: string): HTMLResource
 ```js
 // Add a "AdParameters" child to current "Companion". Return "Companion" to stay on same current level.
 addAdParameters(content: string, attributes: {
-  xmlEncoded: string
+  xmlEncoded: string /* required */
 }): Companion
 ```
 
@@ -2378,7 +2445,7 @@ addAdParameters(content: string, attributes: {
 ```js
 // Attach a "AdParameters" child to current "Companion". Return "AdParameters" to move on child level.
 attachAdParameters(content: string, attributes: {
-  xmlEncoded: string
+  xmlEncoded: string /* required */
 }): AdParameters
 ```
 
@@ -2415,7 +2482,7 @@ attachCompanionClickThrough(content: string): CompanionClickThrough
 ```js
 // Add a "CompanionClickTracking" child to current "Companion". Return "Companion" to stay on same current level.
 addCompanionClickTracking(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): Companion
 ```
 
@@ -2424,7 +2491,7 @@ addCompanionClickTracking(content: string, attributes: {
 ```js
 // Attach a "CompanionClickTracking" child to current "Companion". Return "CompanionClickTracking" to move on child level.
 attachCompanionClickTracking(content: string, attributes: {
-  id: string
+  id: string /* required */
 }): CompanionClickTracking
 ```
 
@@ -2491,7 +2558,7 @@ _all herited from [VastElement](#VastElement)_ and :
 ```js
 // Add a "Tracking" child to current "TrackingEvents". Return "TrackingEvents" to stay on same current level.
 addTracking(content: string, attributes: {
-  event:("creativeView")
+  event:("creativeView") /* required */
 }): TrackingEvents
 ```
 
@@ -2500,7 +2567,7 @@ addTracking(content: string, attributes: {
 ```js
 // Attach a "Tracking" child to current "TrackingEvents". Return "Tracking" to move on child level.
 attachTracking(content: string, attributes: {
-  event:("creativeView")
+  event:("creativeView") /* required */
 }): Tracking
 ```
 

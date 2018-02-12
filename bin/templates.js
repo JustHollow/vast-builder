@@ -134,16 +134,17 @@ const getArgsDocTemplate = (hasContent, hasAttrs, attrs) => {
     apiParameters.push('content: string')
   }
   if (hasAttrs) {
-    apiParameters.push('attributes: ' + getType(attrs, true))
+    apiParameters.push('attributes: ' + getType(attrs, true, true))
   }
   return apiParameters;
 }
 
 
 // build a clean type for attrs
-const getType = (type, newLineForAttributes = false) => {
+const getType = (type, withRequired = false, newLineForAttributes = false) => {
   const nl = newLineForAttributes ? '\n' : '';
   const sp = newLineForAttributes ? '  ' : '';
+  const req = withRequired ? ' /* required */' : '';
   switch (typeof type) {
     case 'object':
       let output = '{' + nl;
@@ -161,11 +162,12 @@ const getType = (type, newLineForAttributes = false) => {
           if (Array.isArray(object.content) && object.content.length > 0) {
             output += ':("' + object.content.join('"|"') + '")';
           } else {
-            output += ': string'
+            output += ': string';
           }
         } else {
           output += sp + el + ': string';
         }
+        output += req;
       }
       output += nl + '}';
       return output;
@@ -215,6 +217,26 @@ const getApiDocumentationTemplate = (vastVersion, doc) => {
     if (e.extends) {
       outputDoc += ` _extends_ ${e.extends}`;
     }
+    ['only', 'required', 'uniq', 'alo'].forEach((elem) => {
+      if (e[elem]) {
+        outputDoc += `\n\n`;
+        switch (elem) {
+          case 'only':
+            outputDoc += `This child once is the only one allowed at this level below ${e.parentName}`;
+            break;
+          case 'required':
+            outputDoc += `This child is required below ${e.parentName}`;
+            break;
+          case 'uniq':
+            outputDoc += `An uniq one of this child or others at same level are required below ${e.parentName}`;
+            break;
+          case 'alo':
+            outputDoc += `At last one of this child and/or others are required below ${e.parentName}`;
+            break;
+        }
+        outputDoc += ` in VAST${vastVersion} spec`;
+      }
+    });
     outputDoc += '\n\n';
     if (e.parentName) {
       outputDoc += `child of [${e.parentName}](#${e.realParentName}) ↗\n\n`;

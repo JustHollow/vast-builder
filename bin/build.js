@@ -1,6 +1,19 @@
 
+
+// TODO : complete unit / vast-element
+// TODO : test coverage
+
+// TODO : voir pour ajouter les /* types */ pour typescript
+
+// TODO : fast version removing intellisense class ? or cheat the class tooling to intellisense one but exec others
+
+// BUG : intellisense .toXml() not availables in childs ???
+
+// IDEAS :
 // TODO manage type (url/string ...)
-// TODO : complte unit tests validator / vast-element
+// TODO : babel tooling ?
+// TODO : see xsd validation files ??? or not
+
 
 let vastVersion = process.argv[2];
 
@@ -85,6 +98,12 @@ const generateApiAndDoc = (isFirst, currentName, dataObject, overrideName = '', 
     extends: 'VastElement',
     methods: [],
   };
+
+  ['only', 'required', 'uniq', 'alo'].forEach((elem) => {
+    if (dataObject && dataObject[elem] && dataObject[elem] === true) {
+      apiDocumentation[currentUsedName][elem] = true;
+    }
+  });
 
   const methodsList = [];
   for (const childName in dataObject) {

@@ -5,7 +5,7 @@ node_js:
 
 before_install:
   # update package.json to current tag
-  - npm --no-git-tag-version version from-git
+  - npm --no-git-tag-version version from-git 2>/dev/null || true
 
 deploy:
   provider: npm

@@ -1,6 +1,7 @@
 .vscode/
 bin/
 build/doc/
+node_modules/
 coverage/
 ressources/
 specs/

@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/DavidBabel/vast-builder.svg?branch=master)](https://travis-ci.org/DavidBabel/vast-builder)
-[![codecov](https://codecov.io/gh/DavidBabel/vast-builder/branch/master/graph/badge.svg)](https://codecov.io/gh/DavidBabel/vast-builder)
-
+[![code coverage](https://codecov.io/gh/DavidBabel/vast-builder/branch/master/graph/badge.svg)](https://codecov.io/gh/DavidBabel/vast-builder)
 
 [![npm](http://img.shields.io/npm/v/vast-builder.svg)](https://www.npmjs.com/package/vast-builder)
 [![License](https://img.shields.io/npm/l/vast-builder.svg)](LICENSE)

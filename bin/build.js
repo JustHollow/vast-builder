@@ -1,7 +1,6 @@
 
 
-// TODO : complete unit / vast-element
-// TODO : test coverage
+// TODO : test coverage with jest
 
 // TODO : voir pour ajouter les /* types */ pour typescript
 
@@ -12,7 +11,6 @@
 // IDEAS :
 // TODO manage type (url/string ...)
 // TODO : babel tooling ?
-// TODO : see xsd validation files ??? or not
 
 
 let vastVersion = process.argv[2];

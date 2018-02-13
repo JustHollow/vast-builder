@@ -9,7 +9,7 @@ memwatch.on('leak', function (info) {
 
 const { generateMinimalVast } = require('./helpers');
 
-for (let i = 0; i < 30000; i++) {
+for (let i = 0; i < 20000; i++) {
   const vast = generateMinimalVast();
   vast.toXml();
 }

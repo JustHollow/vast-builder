@@ -1,7 +1,12 @@
 [![Build Status](https://travis-ci.org/DavidBabel/vast-builder.svg?branch=master)](https://travis-ci.org/DavidBabel/vast-builder)
+[![codecov](https://codecov.io/gh/DavidBabel/vast-builder/branch/master/graph/badge.svg)](https://codecov.io/gh/DavidBabel/vast-builder)
+
+
 [![npm](http://img.shields.io/npm/v/vast-builder.svg)](https://www.npmjs.com/package/vast-builder)
 [![License](https://img.shields.io/npm/l/vast-builder.svg)](LICENSE)
 [![Downloads/month](https://img.shields.io/npm/dm/vast-builder.svg)](http://www.npmtrends.com/vast-builder)
+<!-- [![Package Quality](http://npm.packagequality.com/badge/vast-project.png)](http://packagequality.com/#?package=vast-project) -->
+
 # vast-builder
 
 This library offer a complete support for IAB Video Ad Serving Template standard: VAST2, VAST3 and VAST4

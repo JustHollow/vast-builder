@@ -1,16 +1,32 @@
 {
   "name": "vast-builder",
   "version": "0.0.0",
-  "description": "An intuitive standard IAB vast generation API",
+  "description": "An intuitive standard IAB Vast XML generation API. Complient with specifications Vast 2.0 / 3.0 / 4.0",
+  "keywords": [
+    "vast",
+    "vast2",
+    "vast3",
+    "vast4",
+    "xml",
+    "generator",
+    "generation",
+    "iab",
+    "standard",
+    "api"
+  ],
   "author": "David Babel",
   "license": "MIT",
   "thanks": "https://www.paypal.me/devilhunter/4",
-  "main": "lib/index.js",
+  "dependencies": {
+    "xml-js": "^1.6.2"
+  },
   "engines": {
     "node": ">= 8"
   },
+  "main": "lib/index.js",
   "scripts": {
     "start": "open ./coverage/lcov-report/index.html",
+    "build": "open ./coverage/lcov-report/index.html",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "build-api": "npm run clean && npm run build-v2 && npm run build-v3 && npm run build-v4",
@@ -25,10 +41,10 @@
       "lib/*.{js}"
     ]
   },
-  "dependencies": {
-    "xml-js": "^1.6.2"
-  },
+  "babel": {},
   "devDependencies": {
+    "@babel/core": "7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
     "chai": "^4.1.2",
     "fs-extra": "^5.0.0",
     "jest": "^22.2.2",

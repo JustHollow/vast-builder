@@ -1,7 +1,14 @@
 language: node_js
+sudo: false
 node_js:
   - 8
   - 9
+
+install:
+  - yarn global add codecov
+
+script:
+  - npm run test && codecov
 
 before_deploy:
   - npm --no-git-tag-version version `git describe --tags` 2>/dev/null || true

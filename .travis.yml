@@ -3,9 +3,7 @@ node_js:
   - 8
   - 9
 
-before_install:
-  # update package.json to current tag
-  - npm --no-git-tag-version version `git describe --tags` 2>/dev/null || true
+before_deploy: npm --no-git-tag-version version `git describe --tags` 2>/dev/null || true
 
 deploy:
   provider: npm

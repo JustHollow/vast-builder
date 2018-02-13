@@ -23,7 +23,7 @@ All APIs are directly generated on top of standard IAB specifications documents 
 
 ### Install
 
-It requires node 8 or above.
+For now, it requires node 8 or above. (will babelize it later)
 
 ```bash
 # with npm

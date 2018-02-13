@@ -1,12 +1,9 @@
 
 
-// TODO : volontary create memory leak for test
-// TODO : test coverage with jest
+
+// TODO : faster version removing intellisense class ? or cheat the class tooling to intellisense one but exec others
 
 // TODO : voir pour ajouter les /* types */ pour typescript
-
-// TODO : fast version removing intellisense class ? or cheat the class tooling to intellisense one but exec others
-
 // BUG : intellisense .toXml() not availables in childs ???
 
 // IDEAS :

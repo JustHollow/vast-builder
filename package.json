@@ -10,6 +10,7 @@
     "node": ">= 8"
   },
   "scripts": {
+    "start": "open ./coverage/lcov-report/index.html",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "build-api": "npm run clean && npm run build-v2 && npm run build-v3 && npm run build-v4",

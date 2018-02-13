@@ -68,7 +68,7 @@ describe('VAST Validator', () => {
   });
   describe('simple tests', () => {
     // the only flag is the stronger
-    // at this level it can be one tab and it is this one
+    // at this level it can be one tag and it is this one
     describe('only fields', () => {
       beforeEach(() => {
         validator = {
@@ -128,6 +128,65 @@ describe('VAST Validator', () => {
         root.dangerouslyAddCustomTag('test', 'content');
         root.dangerouslyAddCustomTag('other', 'content');
         assert(validateNext(root, validator));
+      });
+    });
+    describe('uniq fields', () => {
+      beforeEach(() => {
+        validator = {
+          uniq: {
+            thatOne: {
+            },
+            orThatOne: {
+            }
+          }
+        };
+      });
+      it('should throw on last level empty content tag', () => {
+        root.dangerouslyAddCustomTag('thatOne');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /No content found in "thatOne"/);
+      });
+      it('should say uniq tag is valid', () => {
+        root.dangerouslyAddCustomTag('thatOne', 'content');
+        assert(validateNext(root, validator));
+      });
+      it('should say uniq tag is valid', () => {
+        root.dangerouslyAddCustomTag('orThatOne', 'content');
+        assert(validateNext(root, validator));
+      });
+      it('should say uniq tag is not uniq', () => {
+        root.dangerouslyAddCustomTag('thatOne', 'content');
+        root.dangerouslyAddCustomTag('orThatOne', 'content');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /Only one child of "thatOne,orThatOne" is allowed below "root"/);
+      });
+      it('should say uniq tag is in double', () => {
+        root.dangerouslyAddCustomTag('thatOne', 'content');
+        root.dangerouslyAddCustomTag('thatOne', 'content');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /Only one child of "thatOne,orThatOne" is allowed below "root"/);
+      });
+      it('should say uniq tag is missing', () => {
+        root.dangerouslyAddCustomTag('other', 'content');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /One child of "thatOne,orThatOne" is needed below "root"/);
+      });
+      it('should say uniq tag is present with another', () => {
+        root.dangerouslyAddCustomTag('thatOne', 'content');
+        root.dangerouslyAddCustomTag('other', 'content');
+        assert(validateNext(root, validator));
+      });
+      it('should say uniq tag is in double', () => {
+        validator = {
+          uniq: {
+            thatOne: {
+            }
+          }
+        };
+        root.dangerouslyAddCustomTag('thatOne', 'content');
+        root.dangerouslyAddCustomTag('thatOne', 'content');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /Your validator seems broken, prefer "only" over uniq if you want on only child/);
       });
     });
     // alo: at least one is a required field, but shared between multiples possible choices
@@ -238,7 +297,7 @@ describe('VAST Validator', () => {
   });
   describe('two levels tests', () => {
     // the only flag is the stronger
-    // at this level it can be one tab and it is this one
+    // at this level it can be one tag and it is this one
     describe('only fields', () => {
       beforeEach(() => {
         validator = {
@@ -348,6 +407,58 @@ describe('VAST Validator', () => {
         assert.throws(() => validateNext(root, validator), /Multiples "test" found below "subroot"/);
       });
     });
+    describe('uniq fields', () => {
+      beforeEach(() => {
+        validator = {
+          follow: {
+            subroot: {
+              uniq: {
+                thatOne: {
+                },
+                orThatOne: {
+                }
+              }
+            }
+          }
+        };
+        lastTag = root.dangerouslyAttachCustomTag('subroot');
+      });
+      it('should throw on last level empty content tag', () => {
+        lastTag.dangerouslyAddCustomTag('thatOne');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /No content found in "thatOne"/);
+      });
+      it('should say uniq tag is valid', () => {
+        lastTag.dangerouslyAddCustomTag('thatOne', 'content');
+        assert(validateNext(root, validator));
+      });
+      it('should say uniq tag is valid', () => {
+        lastTag.dangerouslyAddCustomTag('orThatOne', 'content');
+        assert(validateNext(root, validator));
+      });
+      it('should say uniq tag is not uniq', () => {
+        lastTag.dangerouslyAddCustomTag('thatOne', 'content');
+        lastTag.dangerouslyAddCustomTag('orThatOne', 'content');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /Only one child of "thatOne,orThatOne" is allowed below "subroot"/);
+      });
+      it('should say uniq tag is in double', () => {
+        lastTag.dangerouslyAddCustomTag('thatOne', 'content');
+        lastTag.dangerouslyAddCustomTag('orThatOne', 'content');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /Only one child of "thatOne,orThatOne" is allowed below "subroot"/);
+      });
+      it('should say uniq tag is missing', () => {
+        lastTag.dangerouslyAddCustomTag('other', 'content');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /One child of "thatOne,orThatOne" is needed below "subroot"/);
+      });
+      it('should say uniq tag is present with another', () => {
+        lastTag.dangerouslyAddCustomTag('thatOne', 'content');
+        lastTag.dangerouslyAddCustomTag('other', 'content');
+        assert(validateNext(root, validator));
+      });
+    });
     // alo: at least one is a required field, but shared between multiples possible choices
     describe('alo fields', () => {
       beforeEach(() => {
@@ -452,8 +563,11 @@ describe('VAST Validator', () => {
     });
   });
   describe('brother levels tests', () => {
+    beforeEach(() => {
+      root.dangerouslyAttachCustomTag('notimportant', 'content');
+    });
     // the only flag is the stronger
-    // at this level it can be one tab and it is this one
+    // at this level it can be one tag and it is this one
     describe('only fields', () => {
       beforeEach(() => {
         validator = {
@@ -527,6 +641,55 @@ describe('VAST Validator', () => {
       });
       it('should say required tag is present with another', () => {
         lastTag.dangerouslyAddCustomTag('test', 'content');
+        lastTag.dangerouslyAddCustomTag('other', 'content');
+        assert(validateNext(root, validator));
+      });
+    });
+    describe('uniq fields', () => {
+      beforeEach(() => {
+        validator = {
+          follow: {
+            notimportant: {}
+          },
+          follow: {
+            subroot: {
+              uniq: {
+                thatOne: {
+                },
+                orThatOne: {
+                }
+              }
+            }
+          }
+        };
+        lastTag = root.dangerouslyAttachCustomTag('subroot');
+      });
+      it('should throw on last level empty content tag', () => {
+        lastTag.dangerouslyAddCustomTag('thatOne');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /No content found in "thatOne"/);
+      });
+      it('should say uniq tag is valid', () => {
+        lastTag.dangerouslyAddCustomTag('thatOne', 'content');
+        assert(validateNext(root, validator));
+      });
+      it('should say uniq tag is valid', () => {
+        lastTag.dangerouslyAddCustomTag('orThatOne', 'content');
+        assert(validateNext(root, validator));
+      });
+      it('should say uniq tag is not uniq', () => {
+        lastTag.dangerouslyAddCustomTag('thatOne', 'content');
+        lastTag.dangerouslyAddCustomTag('orThatOne', 'content');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /Only one child of "thatOne,orThatOne" is allowed below "subroot"/);
+      });
+      it('should say uniq tag is missing', () => {
+        lastTag.dangerouslyAddCustomTag('other', 'content');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /One child of "thatOne,orThatOne" is needed below "subroot"/);
+      });
+      it('should say uniq tag is present with another', () => {
+        lastTag.dangerouslyAddCustomTag('thatOne', 'content');
         lastTag.dangerouslyAddCustomTag('other', 'content');
         assert(validateNext(root, validator));
       });

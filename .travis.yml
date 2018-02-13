@@ -2,3 +2,15 @@ language: node_js
 node_js:
   - 8
   - 9
+
+before_install:
+  - npm --no-git-tag-version version from-git
+
+deploy:
+  provider: npm
+  email: 'yes'
+  api_key:
+    secure: vCc7ii74mOMrT+qOq0MYLbh4yZN0hHjo+2gbeJmz8jP3myLZujaVm+uDUvNhB5MjxOLPugUD+okS42S1es3PE51M5NheSklNvVSUUNESkb0Flg6GC4bv+NNsXb+c4t9u9e5T9xt8TZ9HLw0TguZXTSy9Fd+xa0NCjgOAvGHenrrmluPPh/hwyH8eU1ZwLXRoPcJe+5aJl8vsWTgnLB2lm85sdYHXCCRibTY+3Feqd7bq69jBsKdXnxI/rzVy7CYD7i47dkH1TZ/idFKlcONcqgAi0yVQURl9HOoSb2bSQ0caYD+KjJeS0s8USZMDxPkP3vJ6f2Po1heSuJP5fDmzj39IkURqwJCdDJkApHf6ZjfiwGtotCHI/yxoH0xaZwhmtPvDZYzhqfU3kzbOIJWCtZikufsL1Nd9hC6ZYLRzZm/9+Z1KYIg30Lbeq1fZT1B9k4frpDcquZ9G5nYRQ+ZdnNdiOqLjW8AkN9jgCh3JWzXUlPBSrqpGwjM1hhfTQt4VcGFWEBL9QuWV5ej73801ixPOzuO61sQoOTer6DQ+Yhl7BDGIUtN0SAsNAmm2FiSvfR/0BK+zcEB12ppisPTWTk+AwJaKdXBKiY8WNmual0+Z19E+8V+u4VBGC1OfXFqyj0ghnqGhwhKkeyiM47UMcYNEgJN+3Li9rKOvV0MB8wY=
+  on:
+    tags: true
+    repo: DavidBabel/vast-builder

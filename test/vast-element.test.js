@@ -59,8 +59,6 @@ describe('VAST Element', () => {
     vast.parseOptions(testOptions);
     assert.deepEqual(vast.getAttrs('all'), { bar: '33' });
   });
-// TODO getRoot
-// TODO getJson
   it('should correctly return itself', () => {
     const whoAmI = vast.and();
     const whoAmI2 = vast.back();
@@ -73,16 +71,48 @@ describe('VAST Element', () => {
     const vast = new VastElement('name', parent);
     const whoAmI = vast.and();
     const whoAmI2 = vast.back();
-    assert.deepEqual(whoAmI, vast);
-    assert.deepEqual(whoAmI2, vast);
+    assert.deepEqual(whoAmI, parent);
+    assert.deepEqual(whoAmI2, parentParent);
   });
   it('should correctly return root', () => {
     const parentParent = new VastElement('name', null);
     const parent = new VastElement('name', parentParent);
     const vast = new VastElement('name', parent);
-    assert.deepEqual(whoAmI, parent);
+    assert.deepEqual(vast.getRoot(), parentParent);
   });
+  // internal test
+  it('should correctly return json trace', () => {
+    const vast = new VastElement();
+    vast.parseOptions({
+      cdata: false
+    });
+    vast.dangerouslyAddCustomTag('test1', 'content1', { id: 11 })
+      .dangerouslyAttachCustomTag('test2', 'content2', { id: 22 })
+      .dangerouslyAttachCustomTag('test3', 'content3', { id: 33 }).cdata();
 
+    const expected = {
+      _attributes: {},
+      test1: [{
+        _attributes: {
+          id: 11
+        },
+        _text: "content1"
+      }],
+      test2: [{
+        _attributes: {
+          id: 22
+        },
+        _text: "content2",
+        test3: [{
+          _attributes: {
+            id: 33
+          },
+          _cdata: "content3"
+        }]
+      }]
+    };
+    assert.deepEqual(vast.getJson(), expected);
+  });
   it('should return the vast version', () => {
     vast.dangerouslyAddCustomTag('VAST', { version: 44 });
     assert.equal(vast.getVastVersion(), 44);

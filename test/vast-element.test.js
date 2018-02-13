@@ -5,6 +5,7 @@ const assert = chai.assert;
 const sinonChai = require('sinon-chai');
 chai.use(sinonChai);
 const sinon = require('sinon');
+
 const VastElement = require('../lib/vast-element');
 
 const testOptions = {
@@ -159,9 +160,9 @@ describe('VAST Element', () => {
     vast.warn('something');
     vast.err('something');
     assert.isTrue(stubWarn.called);
-    assert.isTrue(stubWarn.calledWith(sinon.match('something')));
+    assert.isTrue(stubWarn.calledWithMatch('something'));
     assert.isTrue(stubError.called);
-    assert.isTrue(stubError.calledWith(sinon.match('something')));
+    assert.isTrue(stubError.calledWithMatch('something'));
 
     stubWarn.restore();
     stubError.restore();

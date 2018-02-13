@@ -1,6 +1,11 @@
 
 // const { runFixture } = require('../helpers');
-const { assert } = require('chai');
+const chai = require('chai');
+const assert = chai.assert;
+const sinonChai = require('sinon-chai');
+chai.use(sinonChai);
+const sinon = require('sinon');
+
 const VastElement = require('../lib/vast-element');
 const validateNext = require('../lib/validate-node');
 
@@ -240,16 +245,47 @@ describe('VAST Validator', () => {
         lastTag.dangerouslyAddCustomTag('test', 'content');
         assert(validateNext(root, validator));
       });
+      it('should say throw because of missing tag', () => {
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /Tag "test" not found below "subroot"/);
+      });
       it('should say required only tag is missing', () => {
         lastTag.dangerouslyAddCustomTag('other', 'content');
         assert.throws(() => validateNext(root, validator));
-        assert.throws(() => validateNext(root, validator), /ag "test" not found below "subroot"/);
+        assert.throws(() => validateNext(root, validator), /Tag "test" not found below "subroot"/);
       });
       it('should say required only tag is not alone at second level', () => {
         lastTag.dangerouslyAddCustomTag('test', 'content');
         lastTag.dangerouslyAddCustomTag('other', 'content');
         assert.throws(() => validateNext(root, validator));
         assert.throws(() => validateNext(root, validator), /Only one "test" is allowed below "subroot"/);
+      });
+      it('should not validate since no element', () => {
+        root = new VastElement();
+        root.parseOptions({
+          throwOnError: false,
+          logWarn: false
+        });
+        lastTag = root.dangerouslyAttachCustomTag('subroot');
+        assert.isFalse(validateNext(root, validator));
+      });
+      it('should say required only tag is valid', () => {
+        validator = {
+          follow: {
+            subroot: {
+              only: {
+                test: {
+                },
+                other: {
+                }
+              }
+            }
+          }
+        };
+        lastTag.dangerouslyAttachCustomTag('test', 'content');
+        lastTag.dangerouslyAttachCustomTag('other', 'content');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /Your validator seems broken, only one child is allow bellow an Only declaration/);
       });
     });
     // required flag says that tag is needed at this level

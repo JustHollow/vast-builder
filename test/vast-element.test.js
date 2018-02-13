@@ -54,9 +54,34 @@ describe('VAST Element', () => {
     vast.parseOptions(testOptions);
     assert.deepEqual(vast.getAttrs('all'), { bar: '33' });
   });
-// TODO getChilds
+  it('should correctly return childs filtered by name', () => {
+    vast = new VastElement('name', null, { attrs: ['foo', 'bar'] }, { bar: '33', cool: 'ok' });
+    vast.parseOptions(testOptions);
+    assert.deepEqual(vast.getAttrs('all'), { bar: '33' });
+  });
 // TODO getRoot
 // TODO getJson
+  it('should correctly return itself', () => {
+    const whoAmI = vast.and();
+    const whoAmI2 = vast.back();
+    assert.deepEqual(whoAmI, vast);
+    assert.deepEqual(whoAmI2, vast);
+  });
+  it('should correctly return parent', () => {
+    const parentParent = new VastElement('name', null);
+    const parent = new VastElement('name', parentParent);
+    const vast = new VastElement('name', parent);
+    const whoAmI = vast.and();
+    const whoAmI2 = vast.back();
+    assert.deepEqual(whoAmI, vast);
+    assert.deepEqual(whoAmI2, vast);
+  });
+  it('should correctly return root', () => {
+    const parentParent = new VastElement('name', null);
+    const parent = new VastElement('name', parentParent);
+    const vast = new VastElement('name', parent);
+    assert.deepEqual(whoAmI, parent);
+  });
 
   it('should return the vast version', () => {
     vast.dangerouslyAddCustomTag('VAST', { version: 44 });
@@ -66,17 +91,20 @@ describe('VAST Element', () => {
     vast.dangerouslyAddCustomTag('VAST', 'content', { version: 44 });
     assert.isTrue(vast.toXml().indexOf('<VAST version="44"><![CDATA[content]]></VAST>') !== -1);
   });
-  // TODO this one is not passing :
   it('should return the vast code without cdata config', () => {
-    vast.dangerouslyAddCustomTag('VAST', 'content', { version: 44 });
     vast.parseOptions({ cdata: false });
-    // console.log(vast.toXml());
+    vast.dangerouslyAddCustomTag('VAST', 'content', { version: 44 });
     assert.isTrue(vast.toXml().indexOf('<VAST version="44">content</VAST>') !== -1);
   });
   it('should return the vast code with forced cdata by attribute', () => {
-    vast.dangerouslyAddCustomTag('VAST', 'content', { version: 44 });
     vast.parseOptions({ cdata: false });
-    assert.isTrue(vast.cdata().toXml().indexOf('<VAST version="44"><![CDATA[content]]></VAST>') !== -1);
+    vast.dangerouslyAttachCustomTag('VAST', 'content', { version: 44 }).cdata();
+    assert.isTrue(vast.toXml().indexOf('<VAST version="44"><![CDATA[content]]></VAST>') !== -1);
+  });
+  it('should return the vast code with cdata forced recursively', () => {
+    vast.parseOptions({ cdata: false });
+    vast.dangerouslyAddCustomTag('VAST', 'content', { version: 44 }).cdata();
+    assert.isTrue(vast.toXml().indexOf('<VAST version="44"><![CDATA[content]]></VAST>') !== -1);
   });
 
   it('should correctly parse options', () => {

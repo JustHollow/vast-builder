@@ -1,7 +1,8 @@
 {
   "name": "vast-builder",
-  "version": "0.1.2",
+  "version": "0.0.0",
   "description": "An intuitive standard IAB vast generation API",
+  "license": "MIT",
   "main": "lib/index.js",
   "thanks": "https://www.paypal.me/devilhunter/4",
   "engines": {
@@ -18,7 +19,6 @@
     "clean": "rm -rf ./build"
   },
   "author": "David Babel",
-  "license": "MIT",
   "dependencies": {
     "xml-js": "^1.6.2"
   },
@@ -26,6 +26,7 @@
     "chai": "^4.1.2",
     "fs-extra": "^5.0.0",
     "jest": "^22.2.2",
-    "js-yaml": "^3.10.0"
+    "js-yaml": "^3.10.0",
+    "memwatch-next": "^0.3.0"
   }
 }

@@ -207,6 +207,7 @@ const father = VastElement.and();
 const grandFather = VastElement.back();
 
 // cdata: turn content into cdata, return the current object
+// apply recursively to be able to make addValidTag().cdata() apply to childs
 // nb: if option cdata is true, it does nothing
 VastElement.cdata();
 

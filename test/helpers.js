@@ -3,6 +3,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const diff = require('jest-diff');
 const { NO_DIFF_MESSAGE } = require('jest-diff/build/constants');
+const createVast = require('../lib/index');
 
 function assertEqual(base, expected) {
   const out = diff(base.trim(), expected.trim());
@@ -28,6 +29,27 @@ function runFixture(toCompare, version, fixtureName) {
   assertEqual(toCompare, expectedResponse);
 }
 
+function generateMinimalVast() {
+  return createVast.v2()
+    .attachAd()
+    .attachInLine()
+    .addImpression('imp_link')
+    .addAdSystem('Society')
+    .addAdTitle('Title')
+    .attachCreatives()
+    .attachCreative()
+    .attachLinear()
+    .addDuration('00:30:00')
+    .attachMediaFiles()
+    .attachMediaFile('my_video', {
+      delivery: 'streaming',
+      type: 'video/mp4',
+      width: '600',
+      height: '400'
+    }).toXml()
+}
+
 module.exports = {
-  runFixture
+  runFixture,
+  generateMinimalVast
 };

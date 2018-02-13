@@ -8,7 +8,8 @@ describe('Stress test', () => {
   it('should generate 10000 VAST in less than 15s', () => {
     const begin = new Date();
     for (let i = 0; i < 10000; i++) {
-      generateMinimalVast();
+      const vast = generateMinimalVast();
+      vast.toXml();
     }
     const end = new Date();
 

@@ -1,5 +1,6 @@
 
 
+// TODO : volontary create memory leak for test
 // TODO : test coverage with jest
 
 // TODO : voir pour ajouter les /* types */ pour typescript

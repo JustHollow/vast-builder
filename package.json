@@ -2,14 +2,15 @@
   "name": "vast-builder",
   "version": "0.0.0",
   "description": "An intuitive standard IAB vast generation API",
+  "author": "David Babel",
   "license": "MIT",
-  "main": "lib/index.js",
   "thanks": "https://www.paypal.me/devilhunter/4",
+  "main": "lib/index.js",
   "engines": {
     "node": ">= 8"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "test:watch": "jest --watch",
     "build-api": "npm run clean && npm run build-v2 && npm run build-v3 && npm run build-v4",
     "build-v2": "node ./bin/build.js 2",
@@ -18,7 +19,11 @@
     "clean-fixtures": "rm -rf ./test/**/fixtures/*.xml",
     "clean": "rm -rf ./build"
   },
-  "author": "David Babel",
+  "jest": {
+    "collectCoverageFrom": [
+      "lib/*.{js}"
+    ]
+  },
   "dependencies": {
     "xml-js": "^1.6.2"
   },
@@ -27,6 +32,8 @@
     "fs-extra": "^5.0.0",
     "jest": "^22.2.2",
     "js-yaml": "^3.10.0",
-    "memwatch-next": "^0.3.0"
+    "memwatch-next": "^0.3.0",
+    "sinon": "^4.3.0",
+    "sinon-chai": "^2.14.0"
   }
 }

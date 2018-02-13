@@ -1,7 +1,7 @@
 
 const {runFixture} = require('../helpers');
 const { assert } = require('chai');
-const createVast = require('../../lib');
+const createVast = require('../../lib/index');
 
 const testOptions = {
   throwOnError: true,
@@ -9,6 +9,10 @@ const testOptions = {
 }
 
 describe('VAST3', () => {
+  it('should generate an empty vast', () => {
+    const vast = createVast.v3();
+    assert(vast.toXml());
+  });
   it('should generate a minimal valid VAST', () => {
     const vast = createVast.v3(testOptions);
     vast

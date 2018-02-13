@@ -30,8 +30,8 @@ function runFixture(toCompare, version, fixtureName) {
 }
 
 function generateMinimalVast() {
-  return createVast.v2()
-    .attachAd()
+  const vast = createVast.v2()
+    .attachAd({id: 'identifier'})
     .attachInLine()
     .addImpression('imp_link')
     .addAdSystem('Society')
@@ -46,7 +46,8 @@ function generateMinimalVast() {
       type: 'video/mp4',
       width: '600',
       height: '400'
-    }).toXml()
+    });
+  return vast;
 }
 
 module.exports = {

@@ -1,6 +1,10 @@
 
 // const { runFixture } = require('../helpers');
-const { assert } = require('chai');
+const chai = require('chai');
+const assert = chai.assert;
+const sinonChai = require('sinon-chai');
+chai.use(sinonChai);
+const sinon = require('sinon');
 const VastElement = require('../lib/vast-element');
 
 const testOptions = {
@@ -39,6 +43,13 @@ describe('VAST Element', () => {
   it('should correctly create child with infos on fields', () => {
     vast = new VastElement('name', null, {attrs:['foo', 'bar']});
     assert.deepEqual(vast.infos.attrs, ['foo', 'bar']);
+  });
+  it('should assert object has attrs ', () => {
+    assert.equal(vast.hasAttrs(), false);
+  });
+  it('should assert object has attrs ', () => {
+    vast = new VastElement('name', null, {}, {cool:'ok'});
+    assert.equal(vast.hasAttrs(), true);
   });
   it('should correctly return all attrs', () => {
     vast = new VastElement('name', null, { attrs: 'all' }, {cool:'ok'});
@@ -82,26 +93,20 @@ describe('VAST Element', () => {
   });
   // internal test
   it('should correctly return json trace', () => {
-    const vast = new VastElement();
     vast.parseOptions({
       cdata: false
     });
-    vast.dangerouslyAddCustomTag('test1', 'content1', { id: 11 })
-      .dangerouslyAttachCustomTag('test2', 'content2', { id: 22 })
+    vast.dangerouslyAddCustomTag('test1', { id: 11 })
+      .dangerouslyAttachCustomTag('test2', 'content2')
       .dangerouslyAttachCustomTag('test3', 'content3', { id: 33 }).cdata();
 
     const expected = {
-      _attributes: {},
       test1: [{
         _attributes: {
           id: 11
-        },
-        _text: "content1"
+        }
       }],
       test2: [{
-        _attributes: {
-          id: 22
-        },
         _text: "content2",
         test3: [{
           _attributes: {
@@ -136,7 +141,40 @@ describe('VAST Element', () => {
     vast.dangerouslyAddCustomTag('VAST', 'content', { version: 44 }).cdata();
     assert.isTrue(vast.toXml().indexOf('<VAST version="44"><![CDATA[content]]></VAST>') !== -1);
   });
+  it('should print a warning if trying to put cdata directly', () => {
+    const stub = sinon.stub(VastElement.prototype, 'warn');
+    vast = new VastElement('test', null, {}, '<![CDATA[content]]>');
+    vast.parseOptions(testOptions);
+    assert.isTrue(stub.called);
+    assert.isTrue(stub.calledWith('dont put CDATA item in content, use .cdata() instead'));
+    stub.restore();
+  });
+  it('should print a warning', () => {
+    const stubWarn = sinon.stub(console, 'warn');
+    const stubError = sinon.stub(console, 'error');
 
+    vast.parseOptions({
+      logWarn: true
+    });
+    vast.warn('something');
+    vast.err('something');
+    assert.isTrue(stubWarn.called);
+    assert.isTrue(stubWarn.calledWith(sinon.match('something')));
+    assert.isTrue(stubError.called);
+    assert.isTrue(stubError.calledWith(sinon.match('something')));
+
+    stubWarn.restore();
+    stubError.restore();
+  });
+  it('should validate on build', () => {
+    const stub = sinon.stub(VastElement.prototype, 'validate');
+    vast.parseOptions({
+      validateOnBuild: true
+    });
+    vast.toXml();
+    assert.isTrue(stub.called);
+    stub.restore();
+  });
   it('should correctly parse options', () => {
     vast.parseOptions({
       cdata: false,

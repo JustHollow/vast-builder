@@ -217,6 +217,23 @@ describe('VAST Validator', () => {
         assert.throws(() => validateNext(root, validator));
         assert.throws(() => validateNext(root, validator), /Tag "test4" not found below "test3"/)
       });
+      it('should do nothing if a node is missing', () => {
+        validator = {
+          follow: {
+            test1: {
+              follow: {
+                test2: {
+
+                }
+              }
+            }
+          }
+        };
+        root = new VastElement();
+        root.parseOptions(testOptions);
+        root.dangerouslyAddCustomTag('test1', 'content');
+        assert(validateNext(root, validator));
+      });
     });
   });
   describe('two levels tests', () => {
@@ -322,6 +339,13 @@ describe('VAST Validator', () => {
         lastTag.dangerouslyAddCustomTag('test', 'content');
         lastTag.dangerouslyAddCustomTag('other', 'content');
         assert(validateNext(root, validator));
+      });
+      it('should say required only tag is valid', () => {
+        lastTag.dangerouslyAttachCustomTag('test', 'content');
+        lastTag.dangerouslyAttachCustomTag('test', 'content');
+        lastTag.dangerouslyAttachCustomTag('test', 'content');
+        assert.throws(() => validateNext(root, validator));
+        assert.throws(() => validateNext(root, validator), /Multiples "test" found below "subroot"/);
       });
     });
     // alo: at least one is a required field, but shared between multiples possible choices

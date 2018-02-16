@@ -1,6 +1,11 @@
 
 
+// TODO : add an option for overriding default <xml>
+// TODO : extract the "builder" in an external module
+// TODO : fix jest with babel
 
+// separate speed test and memory test
+// TODO : write a test generator for API
 // TODO : faster version removing intellisense class ? or cheat the class tooling to intellisense one but exec others
 
 // TODO : voir pour ajouter les /* types */ pour typescript

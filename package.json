@@ -23,43 +23,26 @@
   "engines": {
     "node": ">= 8"
   },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "shippedProposals": true,
-          "useBuiltIns": "usage",
-          "targets": {
-            "node": "6"
-          }
-        }
-      ]
-    ]
-  },
   "main": "lib/index.js",
   "scripts": {
     "start": "open ./coverage/lcov-report/index.html",
-    "build": "babel lib --out-dir dist",
-    "watch": "babel lib --watch --out-dir dist",
+    "build": "./bin/babel.sh",
+    "watch": "",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "build-api": "npm run clean && npm run build-v2 && npm run build-v3 && npm run build-v4",
     "build-v2": "node ./bin/build.js 2",
     "build-v3": "node ./bin/build.js 3",
     "build-v4": "node ./bin/build.js 4",
-    "clean-fixtures": "rm -rf ./test/**/fixtures/*.xml",
-    "clean": "rm -rf ./build"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "lib/*.{js}"
-    ]
+    "clean": "rm -rf ./build",
+    "clean-fixtures": "rm -rf ./test/**/fixtures/*.xml"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
-    "@babel/core": "7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
     "@babel/preset-env": "^7.0.0-beta.40",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.2.2",
     "chai": "^4.1.2",
     "codecov": "latest",
     "fs-extra": "^5.0.0",
@@ -68,5 +51,24 @@
     "memwatch-next": "^0.3.0",
     "sinon": "^4.3.0",
     "sinon-chai": "^2.14.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "lib/*.{js}"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "shippedProposals": true,
+          "useBuiltIns": "usage",
+          "targets": {
+            "node": "4.8.7"
+          }
+        }
+      ]
+    ]
   }
 }

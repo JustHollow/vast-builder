@@ -245,8 +245,7 @@ const xmlVast = VastElement.toXml();
 
 ## Options
 
-You can pass options to the `createVast.vX(options)` method.
-Availables options are :
+You can pass options to the `createVast.vX(options)` method. "Options" is an object with following accepted keys :
 
 | Option                | Default | Description |
 |:----------------------|:--------|:------------|

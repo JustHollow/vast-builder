@@ -26,44 +26,42 @@ describe('VAST Validator', () => {
     // console.log(root.toXml());
   });
   describe('required attributes checking', () => {
-    describe('simple tests', () => {
-      beforeEach(() => {
-        validator = {
-          follow: {
-            test: {
-              attrsRequired: {
-                a: null,
-                b: null,
-                c: ['foo','bar']
-              }
+    beforeEach(() => {
+      validator = {
+        follow: {
+          test: {
+            attrsRequired: {
+              a: null,
+              b: null,
+              c: ['foo','bar']
             }
           }
-        };
-      });
-      it('should throw for missing args', () => {
-        root.dangerouslyAddCustomTag('test', 'content');
-        assert.throws(() => validateNext(root, validator));
-        assert.throws(() => validateNext(root, validator), /Required attribute "a" not found in "test" Tag/);
-      });
-      it('should throw for missing other args than first', () => {
-        root.dangerouslyAddCustomTag('test', 'content', {a:'random'});
-        assert.throws(() => validateNext(root, validator));
-        assert.throws(() => validateNext(root, validator), /Required attribute "b" not found in "test" Tag/);
-      });
-      it('should throw for missing args with expected values', () => {
-        root.dangerouslyAddCustomTag('test', 'content', {a:'random', b:'random'});
-        assert.throws(() => validateNext(root, validator));
-        assert.throws(() => validateNext(root, validator), /Required attribute "c" not found in "test" Tag/);
-      });
-      it('should throw for invalid args with expected values', () => {
-        root.dangerouslyAddCustomTag('test', 'content', {a:'random', b:'random', c:'wrong'});
-        assert.throws(() => validateNext(root, validator));
-        assert.throws(() => validateNext(root, validator), /Required attribute "c" in "test" has incorrect value "wrong"\n  Allowed values are : foo,bar/);
-      });
-      it('should valid correct expected values', () => {
-        root.dangerouslyAddCustomTag('test', 'content', {a:'random', b:'random', c:'foo'});
-        assert(validateNext(root, validator));
-      });
+        }
+      };
+    });
+    it('should throw for missing args', () => {
+      root.dangerouslyAddCustomTag('test', 'content');
+      assert.throws(() => validateNext(root, validator));
+      assert.throws(() => validateNext(root, validator), /Required attribute "a" not found in "test" Tag/);
+    });
+    it('should throw for missing other args than first', () => {
+      root.dangerouslyAddCustomTag('test', 'content', {a:'random'});
+      assert.throws(() => validateNext(root, validator));
+      assert.throws(() => validateNext(root, validator), /Required attribute "b" not found in "test" Tag/);
+    });
+    it('should throw for missing args with expected values', () => {
+      root.dangerouslyAddCustomTag('test', 'content', {a:'random', b:'random'});
+      assert.throws(() => validateNext(root, validator));
+      assert.throws(() => validateNext(root, validator), /Required attribute "c" not found in "test" Tag/);
+    });
+    it('should throw for invalid args with expected values', () => {
+      root.dangerouslyAddCustomTag('test', 'content', {a:'random', b:'random', c:'wrong'});
+      assert.throws(() => validateNext(root, validator));
+      assert.throws(() => validateNext(root, validator), /Required attribute "c" in "test" has incorrect value "wrong"\n  Allowed values are : foo,bar/);
+    });
+    it('should valid correct expected values', () => {
+      root.dangerouslyAddCustomTag('test', 'content', {a:'random', b:'random', c:'foo'});
+      assert(validateNext(root, validator));
     });
   });
   describe('simple tests', () => {

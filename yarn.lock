@@ -31,7 +31,7 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@babel/core@7.0.0-beta.40":
+"@babel/core@^7.0.0-beta.40":
   version "7.0.0-beta.40"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.0.0-beta.40.tgz#455464dd81d499fd97d32b473f0331f74379a33f"
   dependencies:
@@ -673,6 +673,10 @@ babel-core@^6.0.0, babel-core@^6.26.0:
     private "^0.1.7"
     slash "^1.0.0"
     source-map "^0.5.6"
+
+babel-core@^7.0.0-0:
+  version "7.0.0-bridge.0"
+  resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-7.0.0-bridge.0.tgz#95a492ddd90f9b4e9a4a1da14eb335b87b634ece"
 
 babel-generator@^6.18.0, babel-generator@^6.26.0:
   version "6.26.1"

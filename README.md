@@ -8,13 +8,13 @@
 
 # vast-builder
 
-- [Summary](#Summary)
-- [Getting started](#Getting-started)
-- [Fast learn](#Fast-learn)
-- [API](#API)
-- [Options](#Options)
-- [Old node version](#Old-node-version)
-- [Contribute](#Contribute)
+- [Summary](#summary)
+- [Getting started](#getting-started)
+- [Fast learn](#fast-learn)
+- [API](#api)
+- [Options](#options)
+- [Old node version](#old-node-version)
+- [Contribute](#contribute)
 
 ## Summary
 

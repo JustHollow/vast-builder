@@ -4,11 +4,35 @@ const path = require('path');
 const diff = require('jest-diff');
 const { NO_DIFF_MESSAGE } = require('jest-diff/build/constants');
 const createVast = require('../lib/index');
+const createVastCompat = require('../lib/index').compat();
+const nodeVersion = require('node-version');
+
+const currentNodeVersion = nodeVersion.major;
 
 function assertEqual(base, expected) {
   const out = diff(base.trim(), expected.trim());
   if (out !== NO_DIFF_MESSAGE) {
     throw new Error('\n' + out);
+  }
+}
+
+function createTestVast(version, options = {}) {
+  if (currentNodeVersion < 8) {
+    if (version === 2) {
+      return createVastCompat.v2(options);
+    } else if (version === 3) {
+      return createVastCompat.v3(options);
+    } else if (version === 4) {
+      return createVastCompat.v4(options);
+    }
+  } else {
+    if (version === 2) {
+      return createVast.v2(options);
+    } else if (version === 3) {
+      return createVast.v3(options);
+    } else if (version === 4) {
+      return createVast.v4(options);
+    }
   }
 }
 
@@ -30,7 +54,7 @@ function runFixture(toCompare, version, fixtureName) {
 }
 
 function generateMinimalVast() {
-  const vast = createVast.v2()
+  const vast = createTestVast(2)
     .attachAd({id: 'identifier'})
     .attachInLine()
     .addImpression('imp_link')
@@ -52,5 +76,6 @@ function generateMinimalVast() {
 
 module.exports = {
   runFixture,
+  createTestVast,
   generateMinimalVast
 };

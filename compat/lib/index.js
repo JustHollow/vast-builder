@@ -2,13 +2,12 @@ module.exports = {
   /**
    * @param {{ cdata: true, logWarn: true, validateOnBuild: false, throwOnError: false, spaces: 2}} options
    */
-  v2: function v2() {
-    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  v2: function v2(options) {
+    options = options || {};
 
-    var _require = require('../build/api/vast2'),
-        apiv2 = _require.apiv2;
+    var api = require('../build/api/vast2');
 
-    var root = new apiv2();
+    var root = new api.apiv2();
     root.parseOptions(options);
     return root.attachVAST({
       version: '2.0'
@@ -18,13 +17,12 @@ module.exports = {
   /**
    * @param {{ cdata: true, logWarn: true, validateOnBuild: false, throwOnError: false, spaces: 2}} options
    */
-  v3: function v3() {
-    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  v3: function v3(options) {
+    options = options || {};
 
-    var _require2 = require('../build/api/vast3'),
-        apiv3 = _require2.apiv3;
+    var api = require('../build/api/vast3');
 
-    var root = new apiv3();
+    var root = new api.apiv3();
     root.parseOptions(options);
     return root.attachVAST({
       version: '3.0'
@@ -34,16 +32,22 @@ module.exports = {
   /**
    * @param {{ cdata: true, logWarn: true, validateOnBuild: false, throwOnError: false, spaces: 2}} options
    */
-  v4: function v4() {
-    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  v4: function v4(options) {
+    options = options || {};
 
-    var _require3 = require('../build/api/vast4'),
-        apiv4 = _require3.apiv4;
+    var api = require('../build/api/vast4');
 
-    var root = new apiv4();
+    var root = new api.apiv4();
     root.parseOptions(options);
     return root.attachVAST({
       version: '4.0'
     });
+  },
+  compat: function compat() {
+    if (__dirname.indexOf('compat/lib') === -1) {
+      return require('../compat/lib/index');
+    }
+
+    throw new Error('sorry, it seems you already are in the compatibility version');
   }
 };

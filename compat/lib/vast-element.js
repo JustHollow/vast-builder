@@ -2,6 +2,10 @@
 
 require("core-js/modules/es6.function.name");
 
+require("core-js/modules/es6.object.assign");
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -54,7 +58,7 @@ function () {
     this.parseOptions(parent && parent.options || {});
 
     if (this.content && this.content.indexOf('<![CDATA[') !== -1) {
-      this.warn(`dont put CDATA item in content, use .cdata() instead`);
+      this.warn("dont put CDATA item in content, use .cdata() instead");
     }
   } // undocumented
 
@@ -84,13 +88,13 @@ function () {
       var yellow = '\x1b[33m';
       var red = '\x1b[31m';
       var reset = '\x1b[0m';
-      var intro = error ? `${yellow}VAST-BUILDER ${red}ERROR${yellow}:${reset}` : `${yellow}VAST-BUILDER WARNING:${reset}`;
+      var intro = error ? "".concat(yellow, "VAST-BUILDER ").concat(red, "ERROR").concat(yellow, ":").concat(reset) : "".concat(yellow, "VAST-BUILDER WARNING:").concat(reset);
 
       if (this.options.logWarn) {
         if (error) {
-          console.error(`${intro} ${msg}`);
+          console.error("".concat(intro, " ").concat(msg));
         } else {
-          console.warn(`${intro} ${msg}`);
+          console.warn("".concat(intro, " ").concat(msg));
         }
       }
 
@@ -177,12 +181,9 @@ function () {
       } else {
         return Object.keys(this.attrs).reduce(function (prev, next) {
           if (_this.infos.attrs.indexOf(next) !== -1) {
-            return Object.assign({}, prev, {
-              [next]: _this.attrs[next]
-            });
+            return Object.assign({}, prev, _defineProperty({}, next, _this.attrs[next]));
           } else {
-            _this.warn(`WARNING: the attribute "${next}" does not exists in "${_this.name}" Tag. It was ignored.
-  Here is the allowed list: ${_this.infos.attrs}`);
+            _this.warn("WARNING: the attribute \"".concat(next, "\" does not exists in \"").concat(_this.name, "\" Tag. It was ignored.\n  Here is the allowed list: ").concat(_this.infos.attrs));
 
             return prev;
           }
@@ -267,7 +268,7 @@ function () {
   }, {
     key: "validate",
     value: function validate() {
-      var validator = require(`../build/api/vast${this.getVastVersion()}`).validator;
+      var validator = require("../build/api/vast".concat(this.getVastVersion())).validator;
 
       return validateNext(this.getRoot(), validator);
     }

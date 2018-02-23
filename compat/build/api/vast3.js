@@ -6498,6 +6498,6 @@ var validator = {
   }
 };
 module.exports = {
-  apiv3,
-  validator
+  apiv3: apiv3,
+  validator: validator
 };

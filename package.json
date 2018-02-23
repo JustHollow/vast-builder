@@ -16,18 +16,21 @@
   ],
   "author": "David Babel",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DavidBabel/vast-builder"
+  },
   "thanks": "https://www.paypal.me/devilhunter/4",
   "dependencies": {
     "xml-js": "^1.6.2"
   },
   "engines": {
-    "node": ">= 8"
+    "node": ">= 6"
   },
   "main": "lib/index.js",
   "scripts": {
     "start": "open ./coverage/lcov-report/index.html",
     "build": "./bin/babel.sh",
-    "watch": "",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "build-api": "npm run clean && npm run build-v2 && npm run build-v3 && npm run build-v4",
@@ -49,6 +52,7 @@
     "jest": "^22.2.2",
     "js-yaml": "^3.10.0",
     "memwatch-next": "^0.3.0",
+    "node-version": "^1.1.0",
     "sinon": "^4.3.0",
     "sinon-chai": "^2.14.0"
   },
@@ -65,7 +69,7 @@
           "shippedProposals": true,
           "useBuiltIns": "usage",
           "targets": {
-            "node": "4.8.7"
+            "node": "2"
           }
         }
       ]

@@ -26,7 +26,7 @@ var validateNext = function validateNext(currentNode, currentValidator) {
       var childNodes = currentNode.getChilds(key);
 
       if (childNodes.length === 0) {
-        currentNode.err(`Tag "${key}" not found below "${currentNode.name}"`);
+        currentNode.err("Tag \"".concat(key, "\" not found below \"").concat(currentNode.name, "\""));
         /* istanbul ignore next */
 
         returnValue = false;
@@ -39,14 +39,14 @@ var validateNext = function validateNext(currentNode, currentValidator) {
 
     if (uniq.length !== 1) {
       if (uniq.length === 0) {
-        currentNode.err(`One child of "${Object.keys(currentValidator.only)}" is needed below "${currentNode.name}", found ${uniq.length}`);
+        currentNode.err("One child of \"".concat(Object.keys(currentValidator.only), "\" is needed below \"").concat(currentNode.name, "\", found ").concat(uniq.length));
       } else {
         var uniqKeys = Object.keys(currentValidator.only);
 
         if (uniqKeys.length === 1) {
-          currentNode.err(`Only one "${uniqKeys}" is allowed below "${currentNode.name}", found ${uniq.length}`);
+          currentNode.err("Only one \"".concat(uniqKeys, "\" is allowed below \"").concat(currentNode.name, "\", found ").concat(uniq.length));
         } else {
-          currentNode.err(`Your validator seems broken, only one child is allow bellow an Only declaration.`);
+          currentNode.err("Your validator seems broken, only one child is allow bellow an Only declaration.");
         }
       }
       /* istanbul ignore next */
@@ -65,13 +65,13 @@ var validateNext = function validateNext(currentNode, currentValidator) {
       var _childNodes = currentNode.getChilds(_key);
 
       if (_childNodes.length === 0) {
-        currentNode.err(`Tag "${_key}" not found below "${currentNode.name}"`);
+        currentNode.err("Tag \"".concat(_key, "\" not found below \"").concat(currentNode.name, "\""));
         /* istanbul ignore next */
 
         returnValue = false;
       } else {
         if (_childNodes.length > 1) {
-          currentNode.err(`Multiples "${_key}" found below "${currentNode.name}". required only one, found ${_childNodes.length}`);
+          currentNode.err("Multiples \"".concat(_key, "\" found below \"").concat(currentNode.name, "\". required only one, found ").concat(_childNodes.length));
           /* istanbul ignore next */
 
           returnValue = false;
@@ -100,14 +100,14 @@ var validateNext = function validateNext(currentNode, currentValidator) {
 
     if (_uniq.length !== 1) {
       if (_uniq.length === 0) {
-        currentNode.err(`One child of "${Object.keys(currentValidator.uniq)}" is needed below "${currentNode.name}", found ${_uniq.length}`);
+        currentNode.err("One child of \"".concat(Object.keys(currentValidator.uniq), "\" is needed below \"").concat(currentNode.name, "\", found ").concat(_uniq.length));
       } else {
         var _uniqKeys = Object.keys(currentValidator.uniq);
 
         if (_uniqKeys.length === 1) {
-          currentNode.err(`Your validator seems broken, prefer "only" over uniq if you want on only child`);
+          currentNode.err("Your validator seems broken, prefer \"only\" over uniq if you want on only child");
         } else {
-          currentNode.err(`Only one child of "${_uniqKeys}" is allowed below "${currentNode.name}", found ${_uniq.length}`);
+          currentNode.err("Only one child of \"".concat(_uniqKeys, "\" is allowed below \"").concat(currentNode.name, "\", found ").concat(_uniq.length));
         }
       }
       /* istanbul ignore next */
@@ -133,7 +133,7 @@ var validateNext = function validateNext(currentNode, currentValidator) {
     }
 
     if (alo.length === 0) {
-      currentNode.err(`At least one child of "${Object.keys(currentValidator.alo)}" is needed below "${currentNode.name}", found ${alo.length}`);
+      currentNode.err("At least one child of \"".concat(Object.keys(currentValidator.alo), "\" is needed below \"").concat(currentNode.name, "\", found ").concat(alo.length));
       /* istanbul ignore next */
 
       returnValue = false;
@@ -155,7 +155,7 @@ var validateNext = function validateNext(currentNode, currentValidator) {
 
   if (Object.keys(currentValidator).filter(filterKeyword).length === 0) {
     if (currentNode && currentNode.childs.length === 0 && !currentNode.content) {
-      currentNode.err(`No content found in "${currentNode.name}"`);
+      currentNode.err("No content found in \"".concat(currentNode.name, "\""));
       /* istanbul ignore next */
 
       returnValue = false;
@@ -169,13 +169,12 @@ var validateNext = function validateNext(currentNode, currentValidator) {
       var currentValue = currentNode.getAttrs()[attrName];
 
       if (!currentValue) {
-        currentNode.err(`Required attribute "${attrName}" not found in "${currentNode.name}" Tag`);
+        currentNode.err("Required attribute \"".concat(attrName, "\" not found in \"").concat(currentNode.name, "\" Tag"));
         /* istanbul ignore next */
 
         returnValue = false;
       } else if (availableValues && availableValues.indexOf(currentValue) === -1) {
-        currentNode.err(`Required attribute "${attrName}" in "${currentNode.name}" has incorrect value "${currentValue}"
-  Allowed values are : ${availableValues}`);
+        currentNode.err("Required attribute \"".concat(attrName, "\" in \"").concat(currentNode.name, "\" has incorrect value \"").concat(currentValue, "\"\n  Allowed values are : ").concat(availableValues));
         /* istanbul ignore next */
 
         returnValue = false;

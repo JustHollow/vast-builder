@@ -8,6 +8,16 @@
 
 # vast-builder
 
+- [Summary](#Summary)
+- [Getting started](#Getting-started)
+- [Fast learn](#Fast-learn)
+- [API](#API)
+- [Options](#Options)
+- [Old node version](#Old-node-version)
+- [Contribute](#Contribute)
+
+## Summary
+
 This library offer a complete support for IAB Video Ad Serving Template standard: VAST2, VAST3 and VAST4
 
 ![IAB Logo](https://vignette.wikia.nocookie.net/logopedia/images/c/c5/IAB_logo_2008.svg/revision/latest?cb=20110130174537 "IAB Logo")
@@ -29,7 +39,9 @@ All APIs are directly generated on top of standard IAB specifications documents 
 
 ### Install
 
-For now, it requires node 8 or above. (will babelize it later)
+The fast version requires node 8 or above.
+
+If you need to support older node versions, follow [this guide](#Old-node-version).
 
 ```bash
 # with npm
@@ -269,6 +281,28 @@ Following options are also available and inherited from awesome [xml-js](https:/
 | `ignoreCdata`         | `false` | Whether to ignore writing CData of the elements. That is, no `<![CDATA[ ]]>` will be generated. |
 | `ignoreDoctype`       | `false` | Whether to ignore writing Doctype of the elements. That is, no `<!DOCTYPE >` will be generated. |
 | `ignoreText`          | `false` | Whether to ignore writing texts of the elements. For example, `hi` text in `<a>hi</a>` will be ignored. |
+
+## Old node version
+
+In order to run this package on older version of node, you can use the compatibility mode.
+
+To do that, your have to explicitly require the compat version of the script :
+
+```js
+// node 8 and above
+const vast = createVast.v3(options);
+
+// node 7 and bellow
+var vast = createVast.compat().v3(options);
+```
+
+The script compat is build with [Babel](https://babeljs.io/) with target node = 4.8.7 and share the exact same API.
+
+It makes the compat script fully supported and tested with node 6 and 7.
+
+Be aware that is should work for node 5 and bellow, but it's experimental since our tests are running with Jest, which is only compatible with node 6 and above.
+
+Unfortunatly with compat version, you may loose the intellisense compatibility, but you are still able to write your code with classic node 8 methods and change the constructor at the end of your developpement phase.
 
 ## Contribute
 

@@ -7705,6 +7705,6 @@ var validator = {
   }
 };
 module.exports = {
-  apiv4,
-  validator
+  apiv4: apiv4,
+  validator: validator
 };

@@ -1,7 +1,8 @@
 
 const {runFixture} = require('../helpers');
 const { assert } = require('chai');
-const createVast = require('../../lib/index');
+// const createVast = require('../../lib/index');
+const { createTestVast } = require('../helpers');
 
 const testOptions = {
   throwOnError: true,
@@ -10,11 +11,11 @@ const testOptions = {
 
 describe('VAST3', () => {
   it('should generate an empty vast', () => {
-    const vast = createVast.v3();
+    const vast = createTestVast(3);
     assert(vast.toXml());
   });
   it('should generate a minimal valid VAST', () => {
-    const vast = createVast.v3(testOptions);
+    const vast = createTestVast(3, testOptions);
     vast
       .attachAd()
       .attachInLine()
@@ -37,7 +38,7 @@ describe('VAST3', () => {
     runFixture(vast.toXml(), 'v3', 'minimal_vast');
   });
   it('should throw if missing elements', () => {
-    const vast = createVast.v3(testOptions);
+    const vast = createTestVast(3, testOptions);
     assert.throws(() => vast.validate(), /At least one child of "Ad" is needed below "VAST"/);
     const Ad = vast.attachAd();
     assert.throws(() => vast.validate(), /One child of "InLine,Wrapper" is needed below "Ad"/);

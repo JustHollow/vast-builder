@@ -4957,6 +4957,6 @@ var validator = {
   }
 };
 module.exports = {
-  apiv2,
-  validator
+  apiv2: apiv2,
+  validator: validator
 };
